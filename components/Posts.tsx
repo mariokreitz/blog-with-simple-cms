@@ -2,9 +2,9 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Card } from "./ui/blog-post-card";
-import { IPost } from "@/models/Post";
+import { BlogPost } from "@/types/BlogPost";
 
-export const getPosts = async (): Promise<IPost[]> => {
+export const getPosts = async (): Promise<BlogPost[]> => {
   const response = await axios.get("/api/posts");
   return response.data.posts;
 };
@@ -23,7 +23,7 @@ const Posts = () => {
   }
 
   data.sort(
-    (a: IPost, b: IPost) =>
+    (a: BlogPost, b: BlogPost) =>
       new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
   );
 
@@ -31,7 +31,7 @@ const Posts = () => {
     <div className="my-8 flex flex-col items-center">
       <h2 className="my-8 text-3xl font-bold md:text-5xl">News</h2>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {data.map((post: IPost) => (
+        {data.map((post: BlogPost) => (
           <div key={post._id} className="h-full w-full">
             <Card data={post} />
           </div>
