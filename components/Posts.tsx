@@ -22,9 +22,14 @@ const Posts = () => {
     return <div>No posts available.</div>;
   }
 
+  data.sort(
+    (a: IPost, b: IPost) =>
+      new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+  );
+
   return (
     <div className="my-8 flex flex-col items-center">
-      <h2 className="text-3xl font-bold">News</h2>
+      <h2 className="my-8 text-3xl font-bold md:text-5xl">News</h2>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {data.map((post: IPost) => (
           <div key={post._id} className="h-full w-full">
