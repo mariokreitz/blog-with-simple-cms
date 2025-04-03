@@ -1,11 +1,13 @@
-import ImagesSliderDemo from "@/components/images-slider-demo";
+import ImagesSliderWrapper from "@/components/images-slider";
+import NavbarWrapper from "@/components/resizeable-navbar";
 
-const Home = () => {
+const App = () => {
   return (
     <>
-      <ImagesSliderDemo />
+      <NavbarWrapper />
+      <ImagesSliderWrapper />
     </>
   );
 };
 
-export default Home;
+export default App;
