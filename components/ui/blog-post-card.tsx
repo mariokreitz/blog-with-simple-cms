@@ -1,14 +1,19 @@
 "use client";
 import { cn } from "@/lib/utils";
+import { IPost } from "@/models/Post";
 import Image from "next/image";
 
-export function Card() {
+interface CardProps {
+  data: Pick<IPost, "title" | "image" | "content" | "author" | "createdAt">;
+}
+
+export function Card({ data }: CardProps) {
   return (
     <div className="group/card w-full max-w-xs">
       <div
         className={cn(
           "card backgroundImage relative mx-auto flex h-96 max-w-sm cursor-pointer flex-col justify-between overflow-hidden rounded-md p-4 shadow-xl",
-          "bg-[url(/urkunde_pb.jpeg)] bg-cover",
+          `bg-[url(/upload/${data.image})] bg-cover`,
         )}
       >
         <div className="absolute top-0 left-0 h-full w-full opacity-60 transition duration-300 group-hover/card:bg-black"></div>
@@ -22,17 +27,20 @@ export function Card() {
           />
           <div className="flex flex-col">
             <p className="relative z-10 text-base font-normal text-gray-50">
-              Philipp Silabetzschky
+              {data.author}
             </p>
-            <p className="text-sm text-gray-400">2 min read</p>
+            <p className="text-sm text-gray-400">
+              {new Date(data.createdAt).toLocaleDateString()}
+            </p>
           </div>
         </div>
         <div className="text content">
           <h1 className="relative z-10 text-xl font-bold text-gray-50 md:text-2xl">
-            Urkunde
+            {data.title}
           </h1>
+
           <p className="relative z-10 my-4 text-sm font-normal text-gray-50">
-            Professionelle Tätowierung - 614 Tattoo & Piercing.
+            {data.content}
           </p>
         </div>
       </div>
