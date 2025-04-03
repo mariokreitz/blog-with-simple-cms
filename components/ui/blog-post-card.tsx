@@ -11,7 +11,9 @@ export function Card({ data }: CardProps) {
       <div
         className="card backgroundImage relative mx-auto flex h-96 max-w-sm cursor-pointer flex-col justify-between overflow-hidden rounded-md p-4 shadow-xl"
         style={{
-          backgroundImage: `url(/upload/${data.image})`,
+          backgroundImage: data.image
+            ? `url(/upload/${data.image})`
+            : `url(/fallback.jpg)`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
