@@ -18,6 +18,35 @@ export const metadata: Metadata = {
     { name: "Mario Kreitz", url: "https://www.mario-kreitz.dev" },
   ],
   creator: "Mario Kreitz",
+  keywords: ["Tattoo", "Tattowierung", "Schorndorf", "Lipp Tattoo", "Body Art"],
+  openGraph: {
+    title: "Lipp Tattoo",
+    description:
+      "Professionelle Tattowierung in Schorndorf. Verwirkliche deine Träume auf der Haut mit Lipp Tattoo.",
+    url: "https://vercel.app/lipp-tattoo.de",
+    siteName: "Lipp Tattoo",
+    images: [
+      {
+        url: "https://vercel.app/lipp-tattoo.de/logo.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Lipp Tattoo - Professionelle Tattowierung",
+      },
+    ],
+    locale: "de_DE",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Lipp Tattoo",
+    description:
+      "Professionelle Tattowierung in Schorndorf. Verwirkliche deine Träume auf der Haut mit Lipp Tattoo.",
+    images: ["https://vercel.app/lipp-tattoo.de/logo.jpg"],
+  },
+  icons: {
+    icon: "/favicon.ico",
+  },
+  manifest: "/site.webmanifest",
 };
 
 export default function RootLayout({
