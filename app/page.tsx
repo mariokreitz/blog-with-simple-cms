@@ -1,10 +1,8 @@
-import ImagesSliderWrapper from "@/components/images-slider";
-import NavbarWrapper from "@/components/resizeable-navbar";
+import ImagesSliderWrapper from "@/components/ImageSlider";
 
 const App = () => {
   return (
     <>
-      <NavbarWrapper />
       <ImagesSliderWrapper />
     </>
   );
