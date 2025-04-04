@@ -5,6 +5,7 @@ import NavbarWrapper from "@/components/ResizeableNavbar";
 import Footer from "@/components/Footer";
 import Providers from "./provider";
 import { ScrollToTopButton } from "@/components/ui/scrollToTop-button";
+import SocialMediaBar from "@/components/SocialMediaBar";
 
 const roboto = Roboto({
   weight: "400",
@@ -57,12 +58,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="de">
+    <html lang="de" className="scroll-smooth">
       <body className={`${roboto.className} antialiased`}>
         <NavbarWrapper />
         <Providers>{children}</Providers>
-        <ScrollToTopButton />
         <Footer />
+        <ScrollToTopButton />
+        <SocialMediaBar />
       </body>
     </html>
   );
