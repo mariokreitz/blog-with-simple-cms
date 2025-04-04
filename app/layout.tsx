@@ -4,6 +4,7 @@ import "./globals.css";
 import NavbarWrapper from "@/components/ResizeableNavbar";
 import Footer from "@/components/Footer";
 import Providers from "./provider";
+import { ScrollToTopButton } from "@/components/ui/scrollToTop-button";
 
 const roboto = Roboto({
   weight: "400",
@@ -60,6 +61,7 @@ export default function RootLayout({
       <body className={`${roboto.className} antialiased`}>
         <NavbarWrapper />
         <Providers>{children}</Providers>
+        <ScrollToTopButton />
         <Footer />
       </body>
     </html>
