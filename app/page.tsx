@@ -1,3 +1,4 @@
+import AboutMe from "@/components/AboutMe";
 import ImagesSliderWrapper from "@/components/ImageSlider";
 import Posts, { getPosts } from "@/components/Posts";
 import { getQueryClient } from "@/lib/get-query-client";
@@ -14,6 +15,7 @@ const App = async () => {
     <HydrationBoundary state={dehydrate(queryClient)}>
       <ImagesSliderWrapper />
       <Posts />
+      <AboutMe />
     </HydrationBoundary>
   );
 };
