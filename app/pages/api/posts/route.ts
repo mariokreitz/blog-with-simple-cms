@@ -7,7 +7,9 @@ export async function GET() {
   await dbConnect();
 
   try {
-    const posts = await Post.find<BlogPost>({});
+    const posts = await Post.find<BlogPost>({})
+      .sort({ createdAt: -1 })
+      .limit(6);
     return NextResponse.json({ success: true, posts }, { status: 200 });
   } catch (error) {
     console.error(error);
