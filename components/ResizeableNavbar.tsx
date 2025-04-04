@@ -15,16 +15,16 @@ import { useState } from "react";
 export default function NavbarWrapper() {
   const navItems = [
     {
-      name: "Blogposts",
-      link: "#posts",
+      name: "News",
+      link: "/#news",
     },
     {
-      name: "Über mich",
-      link: "#about",
+      name: "Über mich",
+      link: "/#about",
     },
     {
-      name: "Kontakt",
-      link: "#contact",
+      name: "Standort",
+      link: "/#location",
     },
   ];
 
