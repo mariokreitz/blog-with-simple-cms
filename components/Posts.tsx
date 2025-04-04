@@ -3,6 +3,13 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Card } from "./ui/blog-post-card";
 import { BlogPost } from "@/types/BlogPost";
+import HashLoader from "react-spinners/HashLoader";
+import { CSSProperties } from "react";
+
+const override: CSSProperties = {
+  display: "block",
+  margin: "0 auto",
+};
 
 export const getPosts = async (): Promise<BlogPost[]> => {
   const response = await axios.get("/pages/api/posts");
@@ -15,17 +22,24 @@ const Posts = () => {
     queryFn: getPosts,
   });
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading)
+    return (
+      <div className="my-14 flex flex-col items-center justify-center">
+        <p className="my-12 text-3xl font-bold md:text-5xl">...Loading</p>
+        <HashLoader
+          color="gray"
+          loading={true}
+          cssOverride={override}
+          size={100}
+          aria-label="Loading Spinner"
+        />
+      </div>
+    );
   if (error instanceof Error) return <div>Error: {error.message}</div>;
 
   if (!data || data.length === 0) {
     return <div>No posts available.</div>;
   }
-
-  data.sort(
-    (a: BlogPost, b: BlogPost) =>
-      new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
-  );
 
   return (
     <section
@@ -34,9 +48,9 @@ const Posts = () => {
     >
       <h2 className="my-12 text-3xl font-bold md:text-5xl">News</h2>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {data.map((post: BlogPost) => (
-          <div key={post._id} className="h-full w-full">
-            <Card data={post} />
+        {data.map((post: BlogPost, index) => (
+          <div key={index} className="h-full w-full">
+            <Card post={post} />
           </div>
         ))}
       </div>
