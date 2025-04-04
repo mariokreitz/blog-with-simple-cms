@@ -28,8 +28,11 @@ const Posts = () => {
   );
 
   return (
-    <div className="my-8 flex flex-col items-center">
-      <h2 className="my-8 text-3xl font-bold md:text-5xl">News</h2>
+    <section
+      id="posts"
+      className="my-14 flex scroll-mt-14 flex-col items-center"
+    >
+      <h2 className="my-12 text-3xl font-bold md:text-5xl">News</h2>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {data.map((post: BlogPost) => (
           <div key={post._id} className="h-full w-full">
@@ -37,7 +40,7 @@ const Posts = () => {
           </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 
