@@ -5,7 +5,7 @@ import { Card } from "./ui/blog-post-card";
 import { BlogPost } from "@/types/BlogPost";
 
 export const getPosts = async (): Promise<BlogPost[]> => {
-  const response = await axios.get("/api/posts");
+  const response = await axios.get("/pages/api/posts");
   return response.data.posts;
 };
 
@@ -29,7 +29,7 @@ const Posts = () => {
 
   return (
     <section
-      id="posts"
+      id="news"
       className="my-14 flex scroll-mt-14 flex-col items-center"
     >
       <h2 className="my-12 text-3xl font-bold md:text-5xl">News</h2>
