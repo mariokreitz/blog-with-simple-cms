@@ -1,18 +1,14 @@
 import { BlogPost } from "@/types/BlogPost";
 import Image from "next/image";
 
-interface CardProps {
-  data: BlogPost;
-}
-
-export function Card({ data }: CardProps) {
+export function Card({ post }: { post: BlogPost }) {
   return (
     <div className="group/card w-full max-w-xs">
       <div
         className="card backgroundImage relative mx-auto flex h-96 max-w-sm cursor-pointer flex-col justify-between overflow-hidden rounded-md p-4 shadow-xl"
         style={{
-          backgroundImage: data.image
-            ? `url(/upload/${data.image})`
+          backgroundImage: post.image
+            ? `url(/upload/${post.image})`
             : `url(/fallback.jpg)`,
           backgroundSize: "cover",
           backgroundPosition: "center",
@@ -29,19 +25,19 @@ export function Card({ data }: CardProps) {
           />
           <div className="flex flex-col">
             <p className="relative z-10 text-base font-normal text-gray-50">
-              {data.author}
+              {post.author}
             </p>
             <p className="text-sm text-gray-400">
-              {new Date(data.createdAt).toLocaleDateString()}
+              {new Date(post.createdAt).toLocaleDateString()}
             </p>
           </div>
         </div>
         <div className="flex flex-col">
           <h3 className="relative z-10 text-xl font-bold text-gray-50 md:text-2xl">
-            {data.title}
+            {post.title}
           </h3>
           <p className="relative z-10 my-4 text-sm font-normal text-gray-50">
-            {data.content}
+            {post.content}
           </p>
         </div>
       </div>
