@@ -9,18 +9,26 @@ type AboutMeProps = {
 };
 const AboutMeCard = ({ data }: { data: AboutMeProps }) => {
   return (
-    <div className="flex flex-col items-center justify-center gap-4 rounded-lg p-4 shadow-md">
-      <Image
-        src={`/upload/${data.image}`}
-        alt={data.name}
-        width={200}
-        height={200}
-        className="h-32 w-32 rounded-full object-cover"
-      />
-      <h2 className="text-2xl font-bold">{data.name}</h2>
-      <p className="text-gray-600">{data.title}</p>
-      <p className="text-gray-600">{data.description}</p>
-    </div>
+    <article className="flex max-w-xs flex-col gap-2 overflow-hidden rounded-md border border-neutral-800 bg-neutral-900 sm:max-w-2xl sm:flex-row">
+      <div className="relative flex min-w-fit">
+        <Image
+          className="grayscale"
+          src={`/upload/${data.image}`}
+          width={300}
+          height={500}
+          alt={data.name}
+          priority={false}
+        />
+        {/* Grauer Verlauf */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent from-80% to-neutral-900 sm:bg-gradient-to-r"></div>
+      </div>
+
+      <div className="flex flex-col p-4">
+        <h3 className="text-2xl">{data.name}</h3>
+        <h4 className="mb-4">{data.title}</h4>
+        <p className="">{data.description}</p>
+      </div>
+    </article>
   );
 };
 
