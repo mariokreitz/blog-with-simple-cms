@@ -1,5 +1,6 @@
 import AboutMe from "@/components/AboutMe";
 import ImagesSliderWrapper from "@/components/ImageSlider";
+import Location from "@/components/Location";
 import Posts, { getPosts } from "@/components/Posts";
 import { getQueryClient } from "@/lib/get-query-client";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
@@ -16,6 +17,7 @@ const App = async () => {
       <ImagesSliderWrapper />
       <Posts />
       <AboutMe />
+      <Location />
     </HydrationBoundary>
   );
 };
