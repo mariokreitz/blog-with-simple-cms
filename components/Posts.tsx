@@ -22,10 +22,14 @@ const Posts = () => {
     queryFn: getPosts,
   });
 
+  if (error instanceof Error) console.error(error.message);
+
   if (isLoading)
     return (
       <div className="my-14 flex flex-col items-center justify-center">
-        <p className="my-12 text-3xl font-bold md:text-5xl">...Loading</p>
+        <p className="my-12 text-3xl font-bold md:text-5xl">
+          News werden geladen...
+        </p>
         <HashLoader
           color="gray"
           loading={true}
@@ -35,7 +39,25 @@ const Posts = () => {
         />
       </div>
     );
-  if (error instanceof Error) return <div>Error: {error.message}</div>;
+  if (error instanceof Error)
+    return (
+      <div className="my-14 flex flex-col items-center justify-center px-8">
+        <p className="text-3xl font-bold md:text-5xl">Hopala...</p>
+        <p className="mt-4 text-center text-xl text-pretty">
+          Es sieht so aus, als ob der Server aktuell kein Zeit hat, dir News
+          anzuzeigen. Schau einfach bei mir auf Instagram vorbei...
+          <br />
+          <a
+            href="https://www.instagram.com/lipp.tattoos/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline"
+          >
+            @lipp.tattoos
+          </a>
+        </p>
+      </div>
+    );
 
   if (!data || data.length === 0) {
     return <div>No posts available.</div>;
