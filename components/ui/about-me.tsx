@@ -24,8 +24,12 @@ const AboutMeCard = ({ data }: { data: AboutMeProps }) => {
       </div>
 
       <div className="flex flex-col p-4">
-        <h3 className="text-2xl">{data.name}</h3>
-        <h4 className="mb-4">{data.title}</h4>
+        <h3 className="bg-gradient-to-b from-neutral-50 to-neutral-400 bg-clip-text text-2xl text-transparent">
+          {data.name}
+        </h3>
+        <h4 className="mb-4 bg-gradient-to-b from-neutral-50 to-neutral-400 bg-clip-text text-transparent">
+          {data.title}
+        </h4>
         <p className="">{data.description}</p>
       </div>
     </article>
