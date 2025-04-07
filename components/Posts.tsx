@@ -64,10 +64,7 @@ const Posts = () => {
   }
 
   return (
-    <section
-      id="news"
-      className="my-14 flex scroll-mt-14 flex-col items-center px-4"
-    >
+    <section id="news" className="flex flex-col items-center px-4 py-14">
       <h2 className="my-12 text-4xl font-bold md:text-6xl">News</h2>
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
