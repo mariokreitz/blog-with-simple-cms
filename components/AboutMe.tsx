@@ -12,7 +12,10 @@ const AboutMe = () => {
   return (
     <section id="about" className="flex flex-col items-center px-4 py-14">
       <div className="my-12">
-        <h2 className="text-4xl font-bold">Das bin ich</h2>
+        <h2 className="relative text-4xl font-bold">
+          Das bin ich
+          <span className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-slate-500/0 via-slate-500/70 to-slate-500/0"></span>
+        </h2>
       </div>
       <AboutMeCard data={data} />
     </section>
