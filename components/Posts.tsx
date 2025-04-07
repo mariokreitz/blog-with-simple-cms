@@ -66,9 +66,10 @@ const Posts = () => {
   return (
     <section
       id="news"
-      className="my-14 flex scroll-mt-14 flex-col items-center"
+      className="my-14 flex scroll-mt-14 flex-col items-center px-4"
     >
-      <h2 className="my-12 text-3xl font-bold md:text-5xl">News</h2>
+      <h2 className="my-12 text-4xl font-bold md:text-6xl">News</h2>
+
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {data.map((post: BlogPost, index) => (
           <div key={index} className="h-full w-full">
