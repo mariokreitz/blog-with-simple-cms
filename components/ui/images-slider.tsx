@@ -39,6 +39,7 @@ export const ImagesSlider = ({
 
   useEffect(() => {
     loadImages();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const loadImages = () => {
@@ -82,6 +83,7 @@ export const ImagesSlider = ({
       window.removeEventListener("keydown", handleKeyDown);
       clearInterval(interval);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const slideVariants = {
@@ -127,6 +129,7 @@ export const ImagesSlider = ({
         perspective: "1000px",
       }}
     >
+      {loading && <div>lade Bilder...</div>}
       {areImagesLoaded && children}
       {areImagesLoaded && overlay && (
         <div
