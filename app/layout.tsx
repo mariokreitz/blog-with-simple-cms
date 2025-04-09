@@ -30,9 +30,9 @@ export const metadata: Metadata = {
     siteName: "Lipp Tattoo",
     images: [
       {
-        url: "https://lipptattoos.vercel.app/_next/image?url=%2Flogo.jpg&w=128&q=75",
-        width: 128,
-        height: 75,
+        url: "/preview.png",
+        width: 1200,
+        height: 630,
         alt: "Lipp Tattoo - Professionelle Tattowierung",
       },
     ],
@@ -44,9 +44,7 @@ export const metadata: Metadata = {
     title: "Lipp Tattoo",
     description:
       "Professionelle Tattowierung in Schorndorf. Verwirkliche deine Träume auf der Haut mit Lipp Tattoo.",
-    images: [
-      "https://lipptattoos.vercel.app/_next/image?url=%2Flogo.jpg&w=128&q=75",
-    ],
+    images: ["/preview.png"],
   },
   icons: {
     icon: "/favicon.ico",
