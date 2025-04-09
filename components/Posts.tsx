@@ -5,6 +5,7 @@ import { Card } from "./ui/blog-post-card";
 import { BlogPost } from "@/types/BlogPost";
 import HashLoader from "react-spinners/HashLoader";
 import { CSSProperties } from "react";
+import Link from "next/link";
 
 const override: CSSProperties = {
   display: "block",
@@ -73,7 +74,9 @@ const Posts = () => {
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {data.map((post: BlogPost, index) => (
           <div key={index} className="h-full w-full">
-            <Card post={post} />
+            <Link href={`/blog/${post._id}`}>
+              <Card post={post} />
+            </Link>
           </div>
         ))}
       </div>
