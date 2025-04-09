@@ -8,10 +8,10 @@ const Footer = () => {
         &copy; {new Date().getFullYear()} lipp.tattoos. Alle Rechte vorbehalten.
       </p>
       <div className="mt-2 flex space-x-4">
-        <Link href="/pages/privacy" className="text-sm underline">
+        <Link href="/privacy" className="text-sm underline">
           Datenschutz
         </Link>
-        <Link href="/pages/imprint" className="text-sm underline">
+        <Link href="/imprint" className="text-sm underline">
           Impressum
         </Link>
       </div>
