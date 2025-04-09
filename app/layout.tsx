@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   description:
     "Lipp Tattoo - Professionelle Tattowierung in Schorndorf. Ich helfe dir, deine Träume auf deiner Haut zu verwirklichen.",
   authors: [
-    { name: "Lipp Tattoo", url: "https://lipp-tattoo.de" },
+    { name: "Lipp Tattoo", url: "https://lipptattoos.vercel.app/" },
     { name: "Mario Kreitz", url: "https://www.mario-kreitz.dev" },
   ],
   creator: "Mario Kreitz",
@@ -26,13 +26,13 @@ export const metadata: Metadata = {
     title: "Lipp Tattoo",
     description:
       "Professionelle Tattowierung in Schorndorf. Verwirkliche deine Träume auf der Haut mit Lipp Tattoo.",
-    url: "https://vercel.app/lipp-tattoo.de",
+    url: "https://lipptattoos.vercel.app/",
     siteName: "Lipp Tattoo",
     images: [
       {
-        url: "https://vercel.app/lipp-tattoo.de/logo.jpg",
-        width: 1200,
-        height: 630,
+        url: "https://lipptattoos.vercel.app/_next/image?url=%2Flogo.jpg&w=128&q=75",
+        width: 128,
+        height: 75,
         alt: "Lipp Tattoo - Professionelle Tattowierung",
       },
     ],
@@ -44,12 +44,13 @@ export const metadata: Metadata = {
     title: "Lipp Tattoo",
     description:
       "Professionelle Tattowierung in Schorndorf. Verwirkliche deine Träume auf der Haut mit Lipp Tattoo.",
-    images: ["https://vercel.app/lipp-tattoo.de/logo.jpg"],
+    images: [
+      "https://lipptattoos.vercel.app/_next/image?url=%2Flogo.jpg&w=128&q=75",
+    ],
   },
   icons: {
     icon: "/favicon.ico",
   },
-  manifest: "/site.webmanifest",
 };
 
 export default function RootLayout({
