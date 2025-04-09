@@ -9,7 +9,7 @@ type AboutMeProps = {
 };
 const AboutMeCard = ({ data }: { data: AboutMeProps }) => {
   return (
-    <article className="flex max-w-xs flex-col gap-2 overflow-hidden rounded-md border border-neutral-800 bg-neutral-900 sm:max-w-2xl sm:flex-row">
+    <div className="flex max-w-xs flex-col gap-2 overflow-hidden rounded-md border border-neutral-800 bg-neutral-900 sm:max-w-2xl sm:flex-row">
       <div className="relative flex min-w-fit">
         <Image
           className="grayscale"
@@ -32,7 +32,7 @@ const AboutMeCard = ({ data }: { data: AboutMeProps }) => {
         </h4>
         <p className="">{data.description}</p>
       </div>
-    </article>
+    </div>
   );
 };
 
