@@ -37,7 +37,7 @@ export function Card({ post }: { post: BlogPost }) {
             {post.title}
           </h3>
           <p className="relative z-10 my-4 text-sm font-normal text-gray-50">
-            {post.content}
+            {post.description}
           </p>
         </div>
       </div>
