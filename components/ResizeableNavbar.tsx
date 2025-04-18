@@ -39,12 +39,12 @@ export default function NavbarWrapper() {
           <NavItems items={navItems} />
           <div className="flex items-center gap-4">
             <NavbarButton variant="secondary">Login</NavbarButton>
-            <NavbarButton
+            {/* <NavbarButton
               href="https://www.instagram.com/lipp.tattoos/"
               variant="primary"
             >
               Termin vereinbaren
-            </NavbarButton>
+            </NavbarButton> */}
           </div>
         </NavBody>
 
@@ -80,14 +80,14 @@ export default function NavbarWrapper() {
               >
                 Login
               </NavbarButton>
-              <NavbarButton
+              {/* <NavbarButton
                 onClick={() => setIsMobileMenuOpen(false)}
                 variant="primary"
                 className="w-full"
                 href="https://www.instagram.com/lipp.tattoos/"
               >
                 Termin vereinbaren
-              </NavbarButton>
+              </NavbarButton> */}
             </div>
           </MobileNavMenu>
         </MobileNav>
