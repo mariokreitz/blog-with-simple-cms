@@ -39,7 +39,12 @@ export default function NavbarWrapper() {
           <NavItems items={navItems} />
           <div className="flex items-center gap-4">
             <NavbarButton variant="secondary">Login</NavbarButton>
-            <NavbarButton variant="primary">Termin vereinbaren</NavbarButton>
+            <NavbarButton
+              href="https://www.instagram.com/direct/t/17842000815440001"
+              variant="primary"
+            >
+              Termin vereinbaren
+            </NavbarButton>
           </div>
         </NavBody>
 
@@ -79,6 +84,7 @@ export default function NavbarWrapper() {
                 onClick={() => setIsMobileMenuOpen(false)}
                 variant="primary"
                 className="w-full"
+                href="https://www.instagram.com/direct/t/17842000815440001"
               >
                 Termin vereinbaren
               </NavbarButton>
