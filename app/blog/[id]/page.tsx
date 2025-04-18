@@ -1,4 +1,4 @@
-import dbConnect from "@/lib/dbConnect";
+import dbConnect from "@/lib/mongoose";
 import Post from "@/models/Post";
 import { BlogPost } from "@/types/BlogPost";
 import { notFound } from "next/navigation";
