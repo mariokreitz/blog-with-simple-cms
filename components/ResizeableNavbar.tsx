@@ -40,7 +40,7 @@ export default function NavbarWrapper() {
           <div className="flex items-center gap-4">
             <NavbarButton variant="secondary">Login</NavbarButton>
             <NavbarButton
-              href="https://www.instagram.com/direct/t/17842000815440001"
+              href="https://www.instagram.com/lipp.tattoos/"
               variant="primary"
             >
               Termin vereinbaren
@@ -84,7 +84,7 @@ export default function NavbarWrapper() {
                 onClick={() => setIsMobileMenuOpen(false)}
                 variant="primary"
                 className="w-full"
-                href="https://www.instagram.com/direct/t/17842000815440001"
+                href="https://www.instagram.com/lipp.tattoos/"
               >
                 Termin vereinbaren
               </NavbarButton>
