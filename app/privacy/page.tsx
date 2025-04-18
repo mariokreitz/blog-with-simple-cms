@@ -71,21 +71,20 @@ const Page = () => {
       <h2 id="m3" className="mb-4 text-2xl font-bold">
         Verantwortlicher
       </h2>
-      {/* {TODO: RICHIGE PERSON ANGEBEN} */}
       <p className="mb-2">
-        Vorname, Name / Firma
+        Mario Kreitz
         <br />
-        Straße, Hausnr.
+        Mönchfeldstraße 7
         <br />
-        PLZ, Ort, Land
+        70378 Stuttgart, Deutschland
       </p>
       <p className="mb-8">
         E-Mail-Adresse:{" "}
         <a
           className="text-blue-600 hover:underline"
-          href="mailto:vorname.name@beispielsdomain.eu"
+          href="mailto:contact@mario-kreitz.dev"
         >
-          vorname.name@beispielsdomain.eu
+          contact@mario-kreitz.dev
         </a>
       </p>
 
