@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Admin",
+  title: "Lipp Tattoo - Admin",
   description: "Lipp Tattoo - CMS",
 };
 
