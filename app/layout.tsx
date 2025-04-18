@@ -59,8 +59,11 @@ export default function RootLayout({
   return (
     <html lang="de" className="scroll-smooth">
       <body className={`${roboto.className} antialiased`}>
-        <NavbarWrapper />
-        <Providers>{children}</Providers>
+        <Providers>
+          {" "}
+          <NavbarWrapper />
+          {children}
+        </Providers>
         <Footer />
         <ScrollToTopButton />
         <SocialMediaBar />
