@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  IconBrandInstagram,
-  IconBrandWhatsapp,
-  IconBrandTiktok,
-} from "@tabler/icons-react";
+import { IconBrandInstagram, IconBrandTiktok } from "@tabler/icons-react";
 
 const SocialMediaBar = () => {
   return (
@@ -16,14 +12,14 @@ const SocialMediaBar = () => {
       >
         <IconBrandInstagram />
       </a>
-      <a
+      {/* <a
         className="hover:text-green-500 active:text-green-500"
         href="https://wa.me/4915123456789"
         target="_blank"
         rel="noopener noreferrer"
       >
         <IconBrandWhatsapp />
-      </a>
+      </a> */}
 
       <a
         className="hover:text-[#69c9d0] active:text-[#69c9d0]"
