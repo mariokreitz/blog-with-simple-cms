@@ -1,24 +1,16 @@
 import React from "react";
-import { auth } from "@/auth";
+import { authConfig } from "@/app/api/auth/[...nextauth]/route";
+import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 
-const page = async () => {
-  const session = await auth();
-
-  if (!session) {
-    return redirect("/");
-  }
+const AdminPage = async () => {
+  const session = await getServerSession(authConfig);
+  if (!session) redirect("/");
   return (
-    <div className="container mx-auto px-4 py-24">
-      <h1>Dashboard</h1>
-      <p>Willkommen {session.user?.name} im Dashboard.</p>
-      <p>Hier hast du Zugriff auf alle Funktionen, die du als Admin nutzt.</p>
-      <p>
-        Beachte bitte, dass du nur Zugriff auf die Funktionen hast, die du
-        brauchst, um die Website zu verwalten.
-      </p>
+    <div className="container mx-auto space-y-8 px-4 py-24">
+      <h1 className="text-3xl font-bold">Admin Dashboard</h1>
     </div>
   );
 };
 
-export default page;
+export default AdminPage;
