@@ -1,5 +1,5 @@
 import dbConnect from "@/lib/dbConnect";
-import Post from "@/schema/Post";
+import Post from "@/models/Post";
 import { BlogPost } from "@/types/BlogPost";
 import { notFound } from "next/navigation";
 import mongoose from "mongoose";
