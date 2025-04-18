@@ -71,6 +71,7 @@ const Page = () => {
       <h2 id="m3" className="mb-4 text-2xl font-bold">
         Verantwortlicher
       </h2>
+      {/* {TODO: RICHIGE PERSON ANGEBEN} */}
       <p className="mb-2">
         Vorname, Name / Firma
         <br />
