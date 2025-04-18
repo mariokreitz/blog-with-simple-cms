@@ -61,7 +61,15 @@ const Posts = () => {
     );
 
   if (!data || data.length === 0) {
-    return <div>No posts available.</div>;
+    return (
+      <div className="my-14 flex flex-col items-center justify-center px-8">
+        <p className="text-3xl font-bold md:text-5xl">Keine News verfügbar</p>
+        <p className="mt-4 text-center text-xl text-pretty">
+          Es sieht so aus, als ob der Server aktuell keine News anzuzeigen hat.
+          Probiere es einfach später noch einmal...
+        </p>
+      </div>
+    );
   }
 
   return (
