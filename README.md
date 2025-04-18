@@ -10,7 +10,7 @@ Ein leichtgewichtiges Blogging-System mit integriertem CMS, entwickelt mit Next.
 
 ## 📖 Inhaltsverzeichnis
 
-1. [Live](#live)
+1. [Live](#produktion)
 2. [Features](#features)
 3. [Technologien](#technologien)
 4. [Installation](#installation)
@@ -25,7 +25,7 @@ Ein leichtgewichtiges Blogging-System mit integriertem CMS, entwickelt mit Next.
 
 ## 🚀 Produktion
 
-> Live: [hier klicken](https://your-vercel-deployment-url.vercel.app)
+> Live: [hier klicken](https://lipptattoos.vercel.app/)
 
 ---
 
