@@ -10,12 +10,17 @@ export default function AuthButton() {
   if (status === "loading") return null;
 
   return session ? (
-    <NavbarButton
-      variant="secondary"
-      onClick={() => signOut({ callbackUrl: "/" })}
-    >
-      Logout
-    </NavbarButton>
+    <>
+      <NavbarButton variant="primary" href="/admin">
+        Dashboard
+      </NavbarButton>
+      <NavbarButton
+        variant="secondary"
+        onClick={() => signOut({ callbackUrl: "/" })}
+      >
+        Logout
+      </NavbarButton>
+    </>
   ) : (
     <NavbarButton
       variant="secondary"
