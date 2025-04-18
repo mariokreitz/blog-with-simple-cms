@@ -5,12 +5,12 @@ import {
   NavItems,
   MobileNav,
   NavbarLogo,
-  NavbarButton,
   MobileNavHeader,
   MobileNavToggle,
   MobileNavMenu,
 } from "@/components/ui/resizable-navbar";
 import { useState } from "react";
+import AuthButton from "./AuthButton";
 
 export default function NavbarWrapper() {
   const navItems = [
@@ -38,7 +38,7 @@ export default function NavbarWrapper() {
           <NavbarLogo />
           <NavItems items={navItems} />
           <div className="flex items-center gap-4">
-            <NavbarButton variant="secondary">Login</NavbarButton>
+            <AuthButton />
             {/* <NavbarButton
               href="https://www.instagram.com/lipp.tattoos/"
               variant="primary"
@@ -73,13 +73,7 @@ export default function NavbarWrapper() {
               </a>
             ))}
             <div className="flex w-full flex-col gap-4">
-              <NavbarButton
-                onClick={() => setIsMobileMenuOpen(false)}
-                variant="primary"
-                className="w-full"
-              >
-                Login
-              </NavbarButton>
+              <AuthButton />
               {/* <NavbarButton
                 onClick={() => setIsMobileMenuOpen(false)}
                 variant="primary"
