@@ -1,13 +1,12 @@
 import React from "react";
-import { authConfig } from "@/app/api/auth/[...nextauth]/route";
-import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import NewsManager from "@/components/NewsManager";
 import { SocialMediaManager } from "@/components/SocialMediaManager";
 import { EmailWhitelistManager } from "@/components/EmailWhitelistManager";
+import { getAuthSession } from "@/auth";
 
 const AdminPage = async () => {
-  const session = await getServerSession(authConfig);
+  const session = await getAuthSession();
   if (!session) redirect("/");
   return (
     <div className="container mx-auto space-y-8 px-4 py-24">
