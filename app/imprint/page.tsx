@@ -23,19 +23,22 @@ export default function Impressum() {
 
         <h2>Kontakt:</h2>
         <p>
-          Telefon: 123123123123-123123123123
-          <br />
           E-Mail:{" "}
           <a href="mailto:contact@mario-kreitz.dev">contact@mario-kreitz.dev</a>
+          <br />
+          E-Mail:{" "}
+          <a href="mailto:Phillipp.silabetzschky@gmail.com">
+            Phillipp.silabetzschky@gmail.com
+          </a>
         </p>
 
         <h2>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV:</h2>
         <p>
           Philipp Silabetzschky
           <br />
-          seine adresse
+          Gottlieb-Daimler-straße 16
           <br />
-          70378 Stuttgart
+          73614 Schorndorf
         </p>
 
         <h2>Haftungsausschluss</h2>
