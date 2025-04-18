@@ -1,4 +1,3 @@
-// auth.ts
 import Google from "next-auth/providers/google";
 import { NextAuthOptions } from "next-auth";
 import { getServerSession } from "next-auth";
