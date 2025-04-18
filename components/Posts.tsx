@@ -13,7 +13,7 @@ const override: CSSProperties = {
 };
 
 export const getPosts = async (): Promise<BlogPost[]> => {
-  const response = await axios.get("/pages/api/posts");
+  const response = await axios.get("/api/posts");
   return response.data.posts;
 };
 
