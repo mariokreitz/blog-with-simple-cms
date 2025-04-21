@@ -36,7 +36,7 @@ export default async function PostPage({
             className="h-full w-full bg-cover bg-center"
             style={{
               backgroundImage: post.image
-                ? `url(/upload/${post.image})`
+                ? `url(https://lipp.tattoo-uploads.s3.eu-central-1.amazonaws.com/${post.image})`
                 : `url(/fallback.jpg)`,
             }}
           />
