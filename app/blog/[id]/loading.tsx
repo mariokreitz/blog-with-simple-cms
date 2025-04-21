@@ -1,6 +1,5 @@
 import HashloaderWrapper from "@/components/ui/hash-loader";
 import React from "react";
-import HashLoader from "react-spinners/HashLoader";
 
 const Loading = () => {
   return (
