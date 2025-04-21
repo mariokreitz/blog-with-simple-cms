@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import Providers from "./provider";
 import { ScrollToTopButton } from "@/components/ui/scrollToTop-button";
 import SocialMediaBar from "@/components/SocialMediaBar";
+import { Analytics } from "@vercel/analytics/react";
 
 const roboto = Roboto({
   weight: "400",
@@ -63,6 +64,7 @@ export default function RootLayout({
           {" "}
           <NavbarWrapper />
           {children}
+          <Analytics />
         </Providers>
         <Footer />
         <ScrollToTopButton />
