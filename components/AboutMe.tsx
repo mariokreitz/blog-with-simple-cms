@@ -3,7 +3,7 @@ import AboutMeCard from "./ui/about-me";
 
 const AboutMe = () => {
   const data = {
-    image: "urkunde_pb.jpeg",
+    image: "uploads/1745235163221_urkunde_pb.jpeg",
     name: "Philipp Silabetzschky",
     title: "Tätowierer",
     description:
