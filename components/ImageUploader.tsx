@@ -11,9 +11,7 @@ export default function ImageUploader() {
     try {
       setUploading(true);
       setProgress(0);
-
-      // 1) Presigned URL vom Next.js‑Backend anfordern
-      const signRes = await axios.get("/api/aws", {
+      const signRes = await axios.get("/api/aws/upload", {
         params: {
           fileName: file.name,
           fileType: file.type,
@@ -21,7 +19,6 @@ export default function ImageUploader() {
       });
       const { url, key } = signRes.data;
 
-      // 2) Direkt zu S3 uploaden
       await axios.put(url, file, {
         headers: {
           "Content-Type": file.type,
@@ -33,7 +30,6 @@ export default function ImageUploader() {
         },
       });
 
-      // 3) Öffentliche URL zusammensetzen
       const publicUrl =
         `https://s3.${process.env.NEXT_PUBLIC_AWS_REGION}.amazonaws.com/` +
         `${process.env.NEXT_PUBLIC_S3_BUCKET}/${key}`;
