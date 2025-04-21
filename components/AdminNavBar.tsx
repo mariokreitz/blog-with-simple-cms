@@ -6,6 +6,8 @@ const AdminNavBar = () => {
     <nav>
       <Link href="/admin">Übersicht</Link>
       <Link href="/admin/aws/images">Bilder</Link>
+      <Link href="/admin/news">Neue Post</Link>
+      <Link href="/admin/social-media">Social Media</Link>
     </nav>
   );
 };
