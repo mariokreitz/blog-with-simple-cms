@@ -1,3 +1,4 @@
+import HashloaderWrapper from "@/components/ui/hash-loader";
 import React from "react";
 import HashLoader from "react-spinners/HashLoader";
 
@@ -7,12 +8,7 @@ const Loading = () => {
       <p className="my-12 text-3xl font-bold md:text-5xl">
         Inhalte werden geladen...
       </p>
-      <HashLoader
-        color="gray"
-        loading={true}
-        size={100}
-        aria-label="Loading Spinner"
-      />
+      <HashloaderWrapper />
     </div>
   );
 };
