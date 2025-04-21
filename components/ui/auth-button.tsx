@@ -12,13 +12,13 @@ export default function AuthButton() {
   return session ? (
     <>
       <NavbarButton variant="primary" href="/admin">
-        Dashboard
+        Adminpanel
       </NavbarButton>
       <NavbarButton
         variant="secondary"
         onClick={() => signOut({ callbackUrl: "/" })}
       >
-        Logout
+        Ausloggen
       </NavbarButton>
     </>
   ) : (
@@ -26,7 +26,7 @@ export default function AuthButton() {
       variant="secondary"
       onClick={() => signIn("google", { callbackUrl: "/admin" })}
     >
-      Login
+      Einloggen
     </NavbarButton>
   );
 }
