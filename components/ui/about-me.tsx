@@ -1,4 +1,3 @@
-import Image from "next/image";
 import React from "react";
 
 type AboutMeProps = {
@@ -11,13 +10,12 @@ const AboutMeCard = ({ data }: { data: AboutMeProps }) => {
   return (
     <div className="flex max-w-xs flex-col gap-2 overflow-hidden rounded-md border border-neutral-800 bg-neutral-900 sm:max-w-2xl sm:flex-row">
       <div className="relative flex min-w-fit">
-        <Image
+        <img
           className="grayscale"
-          src={`/upload/${data.image}`}
+          src={`https://lipp.tattoo-uploads.s3.eu-central-1.amazonaws.com/${data.image}`}
           width={300}
           height={500}
           alt={data.name}
-          priority={false}
         />
         {/* Grauer Verlauf */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent from-80% to-neutral-900 sm:bg-gradient-to-r"></div>
