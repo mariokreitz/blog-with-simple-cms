@@ -1,4 +1,4 @@
-import Gallery from "@/components/Gallery";
+import ImageGallery from "@/components/ImageGallery";
 import ImageUploader from "@/components/ImageUploader";
 import React from "react";
 
@@ -7,7 +7,7 @@ const page = () => {
     <>
       <h2>Image Uploader</h2>
       <ImageUploader />
-      <Gallery />
+      <ImageGallery />
     </>
   );
 };
