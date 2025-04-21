@@ -10,7 +10,7 @@ import {
   MobileNavMenu,
 } from "@/components/ui/resizable-navbar";
 import { useState } from "react";
-import AuthButton from "./AuthButton";
+import AuthButton from "./ui/auth-button";
 
 export default function NavbarWrapper() {
   const navItems = [
