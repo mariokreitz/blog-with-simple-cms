@@ -2,15 +2,9 @@
 import { useQuery } from "@tanstack/react-query";
 import { Card } from "./ui/blog-post-card";
 import { BlogPost } from "@/types/BlogPost";
-import HashLoader from "react-spinners/HashLoader";
-import { CSSProperties } from "react";
 import Link from "next/link";
 import { getPosts } from "@/lib/dataFetching";
-
-const override: CSSProperties = {
-  display: "block",
-  margin: "0 auto",
-};
+import HashloaderWrapper from "./ui/hash-loader";
 
 const Posts = () => {
   const { data, error, isLoading } = useQuery({
@@ -26,13 +20,7 @@ const Posts = () => {
         <p className="my-12 text-3xl font-bold md:text-5xl">
           News werden geladen...
         </p>
-        <HashLoader
-          color="gray"
-          loading={true}
-          cssOverride={override}
-          size={100}
-          aria-label="Loading Spinner"
-        />
+        <HashloaderWrapper />
       </div>
     );
   if (error instanceof Error)
