@@ -2,15 +2,9 @@
 
 import { getImages } from "@/lib/dataFetching";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { CSSProperties } from "react";
-import { HashLoader } from "react-spinners";
 import type { ImageData } from "@/types/ImageData";
 import axios from "axios";
-
-const override: CSSProperties = {
-  display: "block",
-  margin: "0 auto",
-};
+import HashloaderWrapper from "./ui/hash-loader";
 
 async function deleteImage(key: string) {
   const response = await axios.delete("/api/aws/images", {
@@ -47,13 +41,7 @@ export default function Gallery() {
         <p className="my-12 text-3xl font-bold md:text-5xl">
           Bilder werden geladen...
         </p>
-        <HashLoader
-          color="gray"
-          loading={true}
-          cssOverride={override}
-          size={100}
-          aria-label="Loading Spinner"
-        />
+        <HashloaderWrapper />
       </div>
     );
 
