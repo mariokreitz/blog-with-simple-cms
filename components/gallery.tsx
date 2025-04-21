@@ -22,12 +22,15 @@ async function deleteImage(key: string) {
   return key;
 }
 
-export default function GalleryPage() {
+export default function Gallery() {
   const queryClient = useQueryClient();
 
   const { data, error, isLoading } = useQuery<ImageData[]>({
     queryKey: ["images", "admin"],
     queryFn: getImages,
+    staleTime: 0,
+    refetchOnMount: true,
+    refetchOnWindowFocus: false,
   });
 
   const mutation = useMutation({
@@ -35,6 +38,7 @@ export default function GalleryPage() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["images", "admin"] });
     },
+    onError: (err) => console.error(err),
   });
 
   if (isLoading)
@@ -83,11 +87,13 @@ export default function GalleryPage() {
             {data.map((img) => (
               <tr key={img.key} className="transition hover:bg-gray-50">
                 <td className="border p-2">
-                  <img
-                    src={img.url}
-                    alt={img.key}
-                    className="h-16 w-auto rounded object-cover"
-                  />
+                  <a href={img.url} target="_blank">
+                    <img
+                      src={img.url}
+                      alt={img.key}
+                      className="h-16 w-auto rounded object-cover"
+                    />
+                  </a>
                 </td>
                 <td className="border p-2">{img.key}</td>
                 <td className="border p-2">{(img.size / 1024).toFixed(2)}</td>
