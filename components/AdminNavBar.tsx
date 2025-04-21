@@ -7,7 +7,7 @@ const AdminNavBar = () => {
       <Link href="/admin">Übersicht</Link>
       <Link href="/admin/aws/images">Bilder</Link>
       <Link href="/admin/news">Neue Post</Link>
-      <Link href="/admin/social-media">Social Media</Link>
+      <Link href="/admin/settings">Einstellungen</Link>
     </nav>
   );
 };
