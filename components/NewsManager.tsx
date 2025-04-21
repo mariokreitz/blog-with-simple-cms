@@ -2,7 +2,6 @@
 import { getPosts } from "@/lib/dataFetching";
 import { BlogPost } from "@/types/BlogPost";
 import { useQuery } from "@tanstack/react-query";
-import Image from "next/image";
 import React from "react";
 import HashloaderWrapper from "./ui/hash-loader";
 
@@ -75,11 +74,9 @@ export default function NewsManager() {
       <ul className="space-y-2">
         {data.map((post: BlogPost, index) => (
           <li key={index} className="rounded border p-2">
-            <Image
-              src={`/upload/${post.image}`}
+            <img
+              src={`https://lipp.tattoo-uploads.s3.eu-central-1.amazonaws.com/${post.image}`}
               alt={post.title}
-              width={200}
-              height={200}
               className="h-32 w-32 object-cover"
             />
             <h3 className="font-semibold">{post.title}</h3>
