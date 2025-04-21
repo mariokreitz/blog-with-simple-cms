@@ -3,13 +3,8 @@ import { getPosts } from "@/lib/dataFetching";
 import { BlogPost } from "@/types/BlogPost";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
-import React, { CSSProperties } from "react";
-import { HashLoader } from "react-spinners";
-
-const override: CSSProperties = {
-  display: "block",
-  margin: "0 auto",
-};
+import React from "react";
+import HashloaderWrapper from "./ui/hash-loader";
 
 export default function NewsManager() {
   const { data, error, isLoading } = useQuery({
@@ -43,13 +38,7 @@ export default function NewsManager() {
         <p className="my-12 text-3xl font-bold md:text-5xl">
           News werden geladen...
         </p>
-        <HashLoader
-          color="gray"
-          loading={true}
-          cssOverride={override}
-          size={100}
-          aria-label="Loading Spinner"
-        />
+        <HashloaderWrapper />
       </div>
     );
 
