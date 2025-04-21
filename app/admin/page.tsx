@@ -7,8 +7,7 @@ const AdminPage = async () => {
   if (!session) redirect("/");
   return (
     <>
-      <h1 className="text-3xl font-bold">Admin Dashboard</h1>
-      <h3>Managers</h3>
+      <h1 className="text-3xl font-bold">Adminpanel</h1>
     </>
   );
 };
