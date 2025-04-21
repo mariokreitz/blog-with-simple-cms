@@ -1,11 +1,13 @@
 "use client";
 import { useState } from "react";
 import axios from "axios";
+import { useQueryClient } from "@tanstack/react-query";
 
 export default function ImageUploader() {
   const [uploading, setUploading] = useState(false);
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [progress, setProgress] = useState<number>(0);
+  const queryClient = useQueryClient();
 
   const uploadFile = async (file: File) => {
     try {
@@ -34,6 +36,7 @@ export default function ImageUploader() {
         `https://s3.${process.env.NEXT_PUBLIC_AWS_REGION}.amazonaws.com/` +
         `${process.env.NEXT_PUBLIC_S3_BUCKET}/${key}`;
       setImageUrl(publicUrl);
+      queryClient.invalidateQueries({ queryKey: ["images", "admin"] });
     } catch (err) {
       console.error("Upload-Fehler:", err);
       alert("Upload fehlgeschlagen");
