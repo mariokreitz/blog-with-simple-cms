@@ -1,7 +1,8 @@
 import AboutMe from "@/components/AboutMe";
 import ImagesSliderWrapper from "@/components/ImageSlider";
 import Location from "@/components/Location";
-import Posts, { getPosts } from "@/components/Posts";
+import Posts from "@/components/Posts";
+import { getPosts } from "@/lib/dataFetching";
 import { getQueryClient } from "@/lib/get-query-client";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 
