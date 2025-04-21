@@ -5,7 +5,7 @@ import React from "react";
 const page = () => {
   return (
     <>
-      <h2>Image Uploader</h2>
+      <h1 className="text-3xl font-bold">Bild hochladen</h1>
       <ImageUploader />
       <ImageGallery />
     </>
