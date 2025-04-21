@@ -1,18 +1,21 @@
 "use client";
+import { getPosts } from "@/lib/dataFetching";
 import { BlogPost } from "@/types/BlogPost";
+import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
-import React, { useState, useEffect } from "react";
+import React, { CSSProperties } from "react";
+import { HashLoader } from "react-spinners";
+
+const override: CSSProperties = {
+  display: "block",
+  margin: "0 auto",
+};
 
 export default function NewsManager() {
-  const [items, setItems] = useState<BlogPost[]>([]);
-  const load = async () => {
-    const res = await fetch("/api/posts");
-    const data = await res.json();
-    setItems(data.posts);
-  };
-  useEffect(() => {
-    load();
-  }, []);
+  const { data, error, isLoading } = useQuery({
+    queryKey: ["posts", "admin"],
+    queryFn: getPosts,
+  });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -32,8 +35,33 @@ export default function NewsManager() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
     });
-    load();
   };
+
+  if (isLoading)
+    return (
+      <div className="my-14 flex flex-col items-center justify-center">
+        <p className="my-12 text-3xl font-bold md:text-5xl">
+          News werden geladen...
+        </p>
+        <HashLoader
+          color="gray"
+          loading={true}
+          cssOverride={override}
+          size={100}
+          aria-label="Loading Spinner"
+        />
+      </div>
+    );
+
+  if (error instanceof Error) return <p>{error.message}</p>;
+
+  if (!data || data.length === 0) {
+    return (
+      <div className="my-14 flex flex-col items-center justify-center px-8">
+        <p className="text-3xl font-bold md:text-5xl">Keine News verfügbar</p>
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-6">
@@ -56,17 +84,17 @@ export default function NewsManager() {
         </button>
       </form>
       <ul className="space-y-2">
-        {items.map((n) => (
-          <li key={n._id} className="rounded border p-2">
+        {data.map((post: BlogPost, index) => (
+          <li key={index} className="rounded border p-2">
             <Image
-              src={`/upload/${n.image}`}
-              alt={n.title}
+              src={`/upload/${post.image}`}
+              alt={post.title}
               width={200}
               height={200}
               className="h-32 w-32 object-cover"
             />
-            <h3 className="font-semibold">{n.title}</h3>
-            <p>{n.content}</p>
+            <h3 className="font-semibold">{post.title}</h3>
+            <p>{post.content}</p>
           </li>
         ))}
       </ul>
