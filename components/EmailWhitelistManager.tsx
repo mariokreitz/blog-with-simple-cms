@@ -64,7 +64,7 @@ export function EmailWhitelistManager() {
               <span className="break-all text-gray-200">{email}</span>
               <button
                 onClick={() => handleRemove(email)}
-                className="rounded bg-red-600 px-4 py-2 text-sm text-white hover:bg-red-700"
+                className="cursor-pointer rounded bg-red-600 px-4 py-2 text-sm text-white hover:bg-red-700"
               >
                 Entfernen
               </button>
