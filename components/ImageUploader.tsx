@@ -22,7 +22,7 @@ export default function ImageUploader() {
         type="file"
         onChange={handleChange}
         disabled={uploading}
-        className="block w-full cursor-pointer rounded border border-neutral-700 bg-neutral-800 p-2 text-gray-200 file:mr-4 file:rounded file:border-0 file:bg-blue-600 file:px-4 file:py-2 file:text-white hover:file:bg-blue-700 disabled:opacity-50"
+        className="block w-full max-w-full cursor-pointer overflow-hidden rounded border border-neutral-700 bg-neutral-800 p-2 text-gray-200 file:mr-4 file:rounded file:border-0 file:bg-blue-600 file:px-4 file:py-2 file:text-white hover:file:bg-blue-700 disabled:opacity-50"
       />
 
       {uploading && (
