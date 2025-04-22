@@ -2,14 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useSocialMediaUpdater } from "@/hooks/useSocialMediaUpdater";
 import { SocialMediaLinks } from "@/types/SocialMediaLinks";
-
-const AVAILABLE_PLATFORMS = [
-  "instagram",
-  "tiktok",
-  "facebook",
-  "youtube",
-  "twitter",
-];
+import { AVAILABLE_PLATFORMS } from "@/lib/utils";
 
 export function SocialMediaManager() {
   const { links, isLoading, isError, saveLinks, isSaving } =
