@@ -15,25 +15,31 @@ export function SocialMediaManager() {
   const { links, isLoading, isError, saveLinks, isSaving } =
     useSocialMediaUpdater();
 
-  const [localLinks, setLocalLinks] = useState<SocialMediaLinks>({});
+  const [localLinks, setLocalLinks] = useState<SocialMediaLinks>(() => {
+    const initial: SocialMediaLinks = {};
+    AVAILABLE_PLATFORMS.forEach((platform) => {
+      initial[platform] = { active: false, url: "" };
+    });
+    return initial;
+  });
 
   useEffect(() => {
-    const initialLinks: Record<string, { active: boolean; url: string }> = {};
-    AVAILABLE_PLATFORMS.forEach((platform) => {
-      initialLinks[platform] = {
-        active: !!links?.[platform],
-        url: links?.[platform]?.url || "",
-      };
+    if (!links) return;
+    setLocalLinks((prev) => {
+      const updated = { ...prev };
+      AVAILABLE_PLATFORMS.forEach((platform) => {
+        updated[platform] = {
+          active: !!links[platform],
+          url: links[platform]?.url || "",
+        };
+      });
+      return updated;
     });
-    setLocalLinks(initialLinks);
   }, [links]);
 
   const handleSave = () => {
     const activeLinks: SocialMediaLinks = {};
-
-    const entries = Object.entries(localLinks as SocialMediaLinks);
-
-    for (const [platform, data] of entries) {
+    for (const [platform, data] of Object.entries(localLinks)) {
       if (data.active && data.url.trim()) {
         activeLinks[platform] = {
           url: data.url.trim(),
@@ -41,20 +47,35 @@ export function SocialMediaManager() {
         };
       }
     }
-
     saveLinks(activeLinks);
   };
 
-  if (isLoading) return <div>Loading...</div>;
-  if (isError || !links) return <div>Error loading social media links</div>;
+  if (isLoading)
+    return (
+      <div className="my-14 flex flex-col items-center justify-center">
+        <p className="my-6 text-3xl font-bold text-gray-200">
+          Lade Social Media Links...
+        </p>
+      </div>
+    );
+
+  if (isError || !links)
+    return (
+      <div className="text-red-500">
+        Fehler beim Laden der Social Media Links
+      </div>
+    );
 
   return (
-    <div className="space-y-4">
-      <h2 className="text-xl font-bold">Social Media Manager</h2>
+    <div className="space-y-6 rounded-lg bg-neutral-900 p-6 text-gray-100 shadow-md">
+      <h2 className="text-2xl font-bold">Social Media Manager</h2>
 
       {AVAILABLE_PLATFORMS.map((platform) => (
-        <div key={platform} className="space-y-2">
-          <label className="flex items-center space-x-2">
+        <div
+          key={platform}
+          className="rounded-md bg-neutral-800 p-4 shadow transition hover:bg-neutral-700"
+        >
+          <label className="flex items-center space-x-3">
             <input
               type="checkbox"
               checked={localLinks[platform]?.active}
@@ -63,36 +84,41 @@ export function SocialMediaManager() {
                   ...prev,
                   [platform]: {
                     ...prev[platform],
-                    active: !prev[platform].active, // Toggle active status
+                    active: !prev[platform].active,
                   },
                 }))
               }
+              className="h-4 w-4 accent-blue-500"
             />
-            <span className="capitalize">{platform}</span>
+            <span className="text-lg capitalize">{platform}</span>
           </label>
 
           {localLinks[platform]?.active && (
             <input
               type="url"
-              value={localLinks[platform].url}
+              value={localLinks[platform]?.url || ""}
               onChange={(e) =>
                 setLocalLinks((prev) => ({
                   ...prev,
                   [platform]: {
                     ...prev[platform],
-                    url: e.target.value, // Update the URL
+                    url: e.target.value,
                   },
                 }))
               }
               placeholder={`${platform} URL`}
-              className="input w-full"
+              className="mt-2 w-full rounded bg-neutral-700 p-2 text-sm text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:outline-none"
             />
           )}
         </div>
       ))}
 
-      <button onClick={handleSave} className="btn mt-4" disabled={isSaving}>
-        {isSaving ? "Saving..." : "Save"}
+      <button
+        onClick={handleSave}
+        className="w-full rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 disabled:opacity-50"
+        disabled={isSaving}
+      >
+        {isSaving ? "Speichern..." : "Speichern"}
       </button>
     </div>
   );
