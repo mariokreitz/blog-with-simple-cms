@@ -26,13 +26,13 @@ export const ConfirmDeleteModal: React.FC<ConfirmDeleteModalProps> = ({
         <div className="flex flex-col gap-4 sm:flex-row sm:justify-end">
           <button
             onClick={onCancel}
-            className="w-full rounded bg-neutral-700 px-4 py-2 text-white hover:bg-neutral-600 sm:w-auto"
+            className="w-full cursor-pointer rounded bg-neutral-700 px-4 py-2 text-white hover:bg-neutral-600 sm:w-auto"
           >
             Abbrechen
           </button>
           <button
             onClick={onConfirm}
-            className="w-full rounded bg-red-600 px-4 py-2 text-white hover:bg-red-700 sm:w-auto"
+            className="w-full cursor-pointer rounded bg-red-600 px-4 py-2 text-white hover:bg-red-700 sm:w-auto"
           >
             Löschen
           </button>
