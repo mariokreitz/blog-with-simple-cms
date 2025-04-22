@@ -12,15 +12,6 @@ const SocialMediaBar = () => {
       >
         <IconBrandInstagram />
       </a>
-      {/* <a
-        className="hover:text-green-500 active:text-green-500"
-        href="https://wa.me/4915123456789"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <IconBrandWhatsapp />
-      </a> */}
-
       <a
         className="hover:text-[#69c9d0] active:text-[#69c9d0]"
         href="https://www.tiktok.com/@lipp.tattoos"
