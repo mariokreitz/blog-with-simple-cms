@@ -115,7 +115,7 @@ export function SocialMediaManager() {
 
       <button
         onClick={handleSave}
-        className="w-full rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 disabled:opacity-50"
+        className="w-full cursor-pointer rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 disabled:opacity-50"
         disabled={isSaving}
       >
         {isSaving ? "Speichern..." : "Speichern"}
