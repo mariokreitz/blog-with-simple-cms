@@ -63,12 +63,12 @@ export default function RootLayout({
         <Providers>
           {" "}
           <NavbarWrapper />
+          <SocialMediaBar />
           {children}
           <Analytics />
         </Providers>
         <Footer />
         <ScrollToTopButton />
-        <SocialMediaBar />
       </body>
     </html>
   );
