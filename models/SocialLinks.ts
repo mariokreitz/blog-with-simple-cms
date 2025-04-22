@@ -1,9 +1,23 @@
 import { Schema, model, models } from "mongoose";
 
-const SocialLinksSchema = new Schema({
-  instagram: String,
-  tiktok: String,
-});
+const SocialLinkItemSchema = new Schema(
+  {
+    url: { type: String, required: true },
+    active: { type: Boolean, default: true },
+  },
+  { _id: false },
+);
+
+const SocialLinksSchema = new Schema(
+  {
+    links: {
+      type: Map,
+      of: SocialLinkItemSchema,
+      default: {},
+    },
+  },
+  { timestamps: true },
+);
 
 const SocialLinks =
   models.SocialLinks || model("SocialLinks", SocialLinksSchema);
