@@ -75,7 +75,7 @@ export default function NewsManager() {
         {data.map((post: BlogPost, index) => (
           <li key={index} className="rounded border p-2">
             <img
-              src={`https://lipp.tattoo-uploads.s3.eu-central-1.amazonaws.com/${post.image}`}
+              src={`https://lipptattoo.s3.eu-central-1.amazonaws.com/${post.image}`}
               alt={post.title}
               className="h-32 w-32 object-cover"
             />
