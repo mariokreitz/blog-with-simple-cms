@@ -12,7 +12,7 @@ const AboutMeCard = ({ data }: { data: AboutMeProps }) => {
       <div className="relative flex min-w-fit">
         <img
           className="grayscale"
-          src={`https://lipp.tattoo-uploads.s3.eu-central-1.amazonaws.com/${data.image}`}
+          src={`https://lipptattoo.s3.eu-central-1.amazonaws.com/${data.image}`}
           width={300}
           height={500}
           alt={data.name}
