@@ -8,7 +8,7 @@ export function Card({ post }: { post: BlogPost }) {
         className="card backgroundImage relative mx-auto flex h-96 max-w-sm cursor-pointer flex-col justify-between overflow-hidden rounded-md p-4 shadow-xl"
         style={{
           backgroundImage: post.image
-            ? `url(https://lipp.tattoo-uploads.s3.eu-central-1.amazonaws.com/${post.image})`
+            ? `url(https://lipptattoo.s3.eu-central-1.amazonaws.com/${post.image})`
             : `url(/fallback.jpg)`,
           backgroundSize: "cover",
           backgroundPosition: "center",
