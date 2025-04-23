@@ -40,13 +40,11 @@ export default function ImageUploader() {
       {imageUrl && (
         <div className="mt-6 text-center">
           <p className="mb-2 text-gray-300">Upload abgeschlossen:</p>
-          <a href={imageUrl} target="_blank" rel="noopener noreferrer">
-            <img
-              src={imageUrl}
-              alt="Uploaded"
-              className="mx-auto max-h-40 rounded shadow"
-            />
-          </a>
+          <img
+            src={imageUrl}
+            alt="Uploaded"
+            className="mx-auto max-h-40 rounded shadow"
+          />
         </div>
       )}
     </div>
