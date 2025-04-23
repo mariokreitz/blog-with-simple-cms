@@ -1,6 +1,6 @@
 # blog-with-simple-cms 🌟
 
-[![Live Demo](https://img.shields.io/badge/Live-Demo-https%3A%2F%2Flipptattoos.vercel.app-00ACEE?style=for-the-badge&logo=vercel)](https://lipptattoos.vercel.app/)
+[![Live Demo](https://img.shields.io/badge/Live-https%3A%2F%2Flipptattoos.vercel.app-00ACEE?style=for-the-badge&logo=vercel)](https://lipptattoos.vercel.app/)
 [![Next.js](https://img.shields.io/badge/Framework-Next.js-000000?style=for-the-badge&logo=next.js)](https://nextjs.org/)
 [![MongoDB](https://img.shields.io/badge/Database-MongoDB-47A248?style=for-the-badge&logo=mongodb)](https://www.mongodb.com/)
 [![AWS S3](https://img.shields.io/badge/Storage-AWS%20S3-569A31?style=for-the-badge&logo=amazon-aws)](https://aws.amazon.com/s3/)
