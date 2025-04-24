@@ -8,7 +8,7 @@ interface PostsAdminProps {
 }
 
 const PostsAdmin: React.FC<PostsAdminProps> = ({ posts }) => {
-  const [postList, setPostList] = useState<BlogPost[]>(() => posts);
+  const [postList, setPostList] = useState<BlogPost[]>(posts);
   const [editableIndex, setEditableIndex] = useState<number | null>(null);
   const [editedPost, setEditedPost] = useState<BlogPost | null>(null);
 
@@ -38,7 +38,6 @@ const PostsAdmin: React.FC<PostsAdminProps> = ({ posts }) => {
     setEditableIndex(null);
     setEditedPost(null);
     queryClient.invalidateQueries({ queryKey: ["posts", "admin"] });
-    queryClient.invalidateQueries({ queryKey: ["posts"] });
   };
 
   const handleDelete = async (index: number) => {
@@ -57,7 +56,6 @@ const PostsAdmin: React.FC<PostsAdminProps> = ({ posts }) => {
     }
 
     queryClient.invalidateQueries({ queryKey: ["posts", "admin"] });
-    queryClient.invalidateQueries({ queryKey: ["posts"] });
   };
 
   return postList.map((post, index) => (
