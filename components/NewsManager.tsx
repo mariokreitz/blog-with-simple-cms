@@ -1,19 +1,29 @@
 "use client";
+import React, { FormEvent, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { getPosts, getImages } from "@/lib/dataFetching";
 import { BlogPost } from "@/types/BlogPost";
 import { ImageData } from "@/types/ImageData";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
-import React, { useState } from "react";
 import HashloaderWrapper from "./ui/hash-loader";
 import PostsAdmin from "./PostsAdmin";
 
-export default function NewsManager() {
-  const queryClient = useQueryClient();
+import { useCreatePost } from "@/hooks/useCreatePost";
 
+interface NewPost {
+  title: string;
+  image: string;
+  description: string;
+  content: string;
+  author: string;
+  tags: string[];
+}
+
+export default function NewsManager() {
   const {
     data: posts,
     error: postError,
     isLoading: postsLoading,
+    refetch: refetchPosts,
   } = useQuery<BlogPost[]>({
     queryKey: ["posts", "admin"],
     queryFn: getPosts,
@@ -30,22 +40,29 @@ export default function NewsManager() {
 
   const [selectedUrl, setSelectedUrl] = useState<string>("");
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const {
+    mutate: createPost,
+    isPending: isCreating,
+    error: createError,
+  } = useCreatePost();
+
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     const form = new FormData(e.target as HTMLFormElement);
 
-    const title = form.get("title");
-    const image = form.get("image");
-    const description = form.get("description");
-    const content = form.get("content");
-    const author = form.get("author");
-    const tagsRaw = form.get("tags") as string;
+    const title = form.get("title")?.toString() ?? "";
+    const image = form.get("image")?.toString() ?? "";
+    const description = form.get("description")?.toString() ?? "";
+    const content = form.get("content")?.toString() ?? "";
+    const author = form.get("author")?.toString() ?? "";
+    const tagsRaw = form.get("tags")?.toString() ?? "";
+
     const tags = tagsRaw
       .split(",")
       .map((t) => t.trim())
       .filter(Boolean);
 
-    const payload = {
+    const payload: NewPost = {
       title,
       image,
       description,
@@ -54,16 +71,14 @@ export default function NewsManager() {
       tags,
     };
 
-    await fetch("/api/posts", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
+    createPost(payload, {
+      onSuccess: () => {
+        refetchPosts();
+      },
     });
-
-    queryClient.invalidateQueries({ queryKey: ["posts", "admin"] });
   };
 
-  if (postsLoading || imagesLoading)
+  if (postsLoading || imagesLoading) {
     return (
       <div className="my-14 flex flex-col items-center justify-center">
         <p className="my-12 text-3xl font-bold text-gray-200 md:text-5xl">
@@ -72,11 +87,13 @@ export default function NewsManager() {
         <HashloaderWrapper />
       </div>
     );
+  }
 
-  if (postError instanceof Error || imagesError instanceof Error)
+  if ((postError || imagesError) instanceof Error) {
     return (
-      <p className="text-red-500">{(postError || imagesError)?.message}</p>
+      <p className="text-red-500">{(postError || imagesError)!.message}</p>
     );
+  }
 
   return (
     <div className="container mx-auto p-4">
@@ -84,10 +101,20 @@ export default function NewsManager() {
         News Manager
       </h2>
 
-      {/* Formular mit Schema-Feldern */}
+      {/* Feedback beim Erstellen */}
+      {isCreating && (
+        <div className="mb-4 flex items-center text-gray-200">
+          <HashloaderWrapper size={24} />
+          <span className="ml-2">Beitrag wird erstellt...</span>
+        </div>
+      )}
+
+      {/* Formular zum Erstellen neuer Posts */}
       <form
         onSubmit={handleSubmit}
-        className="mb-8 space-y-4 rounded-lg bg-neutral-800 p-6 shadow-md"
+        className={`mb-8 space-y-4 rounded-lg bg-neutral-800 p-6 shadow-md ${
+          isCreating ? "pointer-events-none opacity-50" : ""
+        }`}
       >
         <input
           name="title"
@@ -150,13 +177,18 @@ export default function NewsManager() {
 
         <button
           type="submit"
+          disabled={isCreating}
           className="w-full rounded bg-blue-600 px-4 py-2 font-semibold text-white hover:bg-blue-700 disabled:opacity-50"
         >
-          Erstellen
+          {isCreating ? "Erstelle..." : "Erstellen"}
         </button>
+
+        {createError && (
+          <p className="mt-2 text-red-400">Fehler: {createError.message}</p>
+        )}
       </form>
 
-      {/* Posts Grid */}
+      {/* Beiträge-Grid */}
       {!posts || posts.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-10">
           <p className="text-3xl font-bold text-gray-200">
