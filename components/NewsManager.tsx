@@ -76,6 +76,8 @@ export default function NewsManager() {
         refetchPosts();
       },
     });
+
+    (e.target as HTMLFormElement).reset();
   };
 
   if (postsLoading || imagesLoading) {
