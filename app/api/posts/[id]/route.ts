@@ -4,10 +4,9 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function DELETE(
   req: NextRequest,
-  context: { params: { id: string } },
+  { params }: { params: { id: string } },
 ) {
-  const params = await context.params;
-  const { id } = params;
+  const { id } = await params;
 
   await dbConnect();
   try {
@@ -17,6 +16,38 @@ export async function DELETE(
     console.error(error);
     return NextResponse.json(
       { success: false, error: "Löschen des Posts fehlgeschlagen" },
+      { status: 500 },
+    );
+  }
+}
+
+export async function PUT(
+  req: NextRequest,
+  { params }: { params: { id: string } },
+) {
+  const { id } = params;
+  const body = await req.json();
+
+  await dbConnect();
+
+  try {
+    const updatedPost = await Post.findByIdAndUpdate(id, body, {
+      new: true,
+      runValidators: true,
+    });
+
+    if (!updatedPost) {
+      return NextResponse.json(
+        { success: false, error: "Post nicht gefunden" },
+        { status: 404 },
+      );
+    }
+
+    return NextResponse.json({ success: true, data: updatedPost });
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json(
+      { success: false, error: "Update fehlgeschlagen" },
       { status: 500 },
     );
   }
