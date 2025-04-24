@@ -5,6 +5,7 @@ import { ImageData } from "@/types/ImageData";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import React, { useState } from "react";
 import HashloaderWrapper from "./ui/hash-loader";
+import PostsAdmin from "./PostsAdmin";
 
 export default function NewsManager() {
   const queryClient = useQueryClient();
@@ -164,38 +165,7 @@ export default function NewsManager() {
         </div>
       ) : (
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {posts.map((post, index) => (
-            <div
-              key={index}
-              className="overflow-hidden rounded-lg bg-neutral-800 shadow-lg transition hover:scale-[1.02] hover:bg-neutral-700"
-            >
-              <img
-                src={post.image}
-                alt={post.title}
-                className="h-48 w-full object-cover"
-              />
-              <div className="p-4">
-                <h3 className="mb-2 text-lg font-semibold text-gray-100">
-                  {post.title}
-                </h3>
-                <p className="font-medium text-gray-300">{post.description}</p>
-                <p className="mt-2 line-clamp-3 text-gray-300">
-                  {post.content}
-                </p>
-                <p className="mt-2 text-sm text-gray-400">von {post.author}</p>
-                <div className="mt-2 flex flex-wrap gap-2">
-                  {post.tags.map((tag, index) => (
-                    <span
-                      key={index + tag}
-                      className="rounded bg-blue-600 px-2 py-1 text-xs text-white"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          ))}
+          <PostsAdmin posts={posts} />
         </div>
       )}
     </div>
