@@ -22,12 +22,14 @@
 3. [Tech Stack](#tech-stack)
 4. [Installation](#installation)
 5. [Umgebungsvariablen](#umgebungsvariablen)
-6. [Skripte](#skripte)
-7. [Projektstruktur](#projektstruktur)
-8. [Deployment](#deployment)
-9. [Contributing](#contributing)
-10. [Lizenz](#lizenz)
-11. [Kontakt](#kontakt)
+6. [Google OAuth Einrichtung](#google-oauth-einrichtung)
+7. [AWS S3 Bucket Einrichtung](#aws-s3-bucket-einrichtung)
+8. [Skripte](#skripte)
+9. [Projektstruktur](#projektstruktur)
+10. [Deployment](#deployment)
+11. [Contributing](#contributing)
+12. [Lizenz](#lizenz)
+13. [Kontakt](#kontakt)
 
 ## Features
 
@@ -100,6 +102,107 @@ NEXT_PUBLIC_S3_BUCKET="your_s3_bucket"
 AWS_ACCESS_KEY_ID="your_aws_access_key_id"
 AWS_SECRET_ACCESS_KEY="your_aws_secret_access_key"
 ```
+
+## Google OAuth Einrichtung
+
+Folge diesen Schritten, um Google OAuth für das Projekt einzurichten:
+
+1. **Google Cloud Console öffnen**
+   - https://console.cloud.google.com/
+2. **Neues Projekt anlegen**
+   - Klicke auf „Projekt erstellen“, z. B. `blog-with-simple-cms`.
+3. **OAuth-Zustimmungsbildschirm konfigurieren**
+   - APIs & Dienste → OAuth-Zustimmungsbildschirm
+   - Typ: „Extern“, Pflichtfelder ausfüllen
+4. **OAuth 2.0-Anmeldedaten erstellen**
+   - Anmeldedaten → Anmeldedaten erstellen → OAuth-Client-ID
+   - Typ: Webanwendung
+   - Autorisierte Weiterleitungs-URIs:
+     ```
+     https://<deine_webseite>.vercel.app/api/auth/callback/google
+     ```
+   - Client-ID und Geheimnis notieren
+5. **Umgebungsvariablen befüllen**
+   ```env
+   GOOGLE_CLIENT_ID="your_google_client_id.apps.googleusercontent.com"
+   GOOGLE_CLIENT_SECRET="your_google_client_secret"
+   ```
+
+## AWS S3 Bucket Einrichtung
+
+Befolge diese Anleitung, um einen S3 Bucket für Bild-Uploads anzulegen und abzusichern:
+
+1. **AWS Console öffnen**
+   - https://console.aws.amazon.com/s3/
+2. **Bucket erstellen**
+   - Name z. B. `blog-images`, Region: `NEXT_PUBLIC_AWS_REGION`
+3. **CORS-Konfiguration**
+   ```json
+   [
+     {
+       "AllowedHeaders": ["*"],
+       "AllowedMethods": ["GET", "PUT", "POST", "HEAD"],
+       "AllowedOrigins": [
+         "https://<deine_webseite>.vercel.app",
+         "http://localhost:3000"
+       ],
+       "ExposeHeaders": ["ETag", "x-amz-request-id"],
+       "MaxAgeSeconds": 3000
+     }
+   ]
+   ```
+4. **Öffentlichen Zugriff beschränken**
+   - Alle vier Optionen deaktivieren
+5. **Bucket-Richtlinie**
+   ```json
+   {
+     "Version": "2012-10-17",
+     "Statement": [
+       {
+         "Sid": "AllowOnlyFromMySite",
+         "Effect": "Allow",
+         "Principal": "*",
+         "Action": "s3:GetObject",
+         "Resource": "arn:aws:s3:::your_s3_bucket/uploads/*",
+         "Condition": {
+           "StringLike": {
+             "aws:Referer": [
+               "https://<deine_webseite>.vercel.app/*",
+               "http://localhost:3000/*"
+             ]
+           }
+         }
+       }
+     ]
+   }
+   ```
+6. **IAM-Benutzer und Berechtigungen**
+   - Benutzer mit Access Keys anlegen, folgende Policy zuweisen:
+   ```json
+   {
+     "Version": "2012-10-17",
+     "Statement": [
+       {
+         "Effect": "Allow",
+         "Action": [
+           "s3:PutObject",
+           "s3:GetObject",
+           "s3:DeleteObject"
+         ],
+         "Resource": [
+           "arn:aws:s3:::your_s3_bucket/*"
+         ]
+       }
+     ]
+   }
+   ```
+7. **Umgebungsvariablen befüllen**
+   ```env
+   NEXT_PUBLIC_AWS_REGION="your_aws_region"
+   NEXT_PUBLIC_S3_BUCKET="your_s3_bucket"
+   AWS_ACCESS_KEY_ID="your_aws_access_key_id"
+   AWS_SECRET_ACCESS_KEY="your_aws_secret_access_key"
+   ```
 
 ## Skripte
 
