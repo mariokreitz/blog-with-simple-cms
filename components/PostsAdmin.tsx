@@ -30,14 +30,21 @@ const PostsAdmin: React.FC<PostsAdminProps> = ({ posts }) => {
   const handleSave = async () => {
     if (editableIndex === null || !editedPost) return;
 
-    setPostList((prev) => {
-      const updated = [...prev];
-      updated[editableIndex] = editedPost;
-      return updated;
-    });
-    setEditableIndex(null);
-    setEditedPost(null);
-    queryClient.invalidateQueries({ queryKey: ["posts", "admin"] });
+    try {
+      await axios.put(`/api/posts/${editedPost._id}`, editedPost);
+
+      setPostList((prev) => {
+        const updated = [...prev];
+        updated[editableIndex] = editedPost;
+        return updated;
+      });
+
+      setEditableIndex(null);
+      setEditedPost(null);
+      queryClient.invalidateQueries({ queryKey: ["posts", "admin"] });
+    } catch (err) {
+      console.error("Fehler beim Speichern des Posts:", err);
+    }
   };
 
   const handleDelete = async (index: number) => {
@@ -106,6 +113,16 @@ const PostsAdmin: React.FC<PostsAdminProps> = ({ posts }) => {
           </div>
 
           <div className="flex gap-4">
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setEditableIndex(null);
+                setEditedPost(null);
+              }}
+              className="rounded bg-gray-600 px-4 py-2 text-white hover:bg-gray-700"
+            >
+              Abbrechen
+            </button>
             <button
               onClick={(e) => {
                 e.stopPropagation();
