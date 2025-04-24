@@ -4,8 +4,9 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string } },
+  context: { params: { id: string } },
 ) {
+  const params = await context.params;
   const { id } = params;
 
   await dbConnect();
