@@ -18,15 +18,16 @@
 ## Inhaltsverzeichnis
 
 1. [Features](#features)
-2. [Tech Stack](#tech-stack)
-3. [Installation](#installation)
-4. [Umgebungsvariablen](#umgebungsvariablen)
-5. [Skripte](#skripte)
-6. [Projektstruktur](#projektstruktur)
-7. [Deployment](#deployment)
-8. [Contributing](#contributing)
-9. [Lizenz](#lizenz)
-10. [Kontakt](#kontakt)
+2. [Screenshots](#screenshots)
+3. [Tech Stack](#tech-stack)
+4. [Installation](#installation)
+5. [Umgebungsvariablen](#umgebungsvariablen)
+6. [Skripte](#skripte)
+7. [Projektstruktur](#projektstruktur)
+8. [Deployment](#deployment)
+9. [Contributing](#contributing)
+10. [Lizenz](#lizenz)
+11. [Kontakt](#kontakt)
 
 ## Features
 
@@ -36,6 +37,20 @@
 - ⚡ **Performance**: Server-Side Rendering (SSR) und statische Generierung (SSG) mit Next.js
 - 🔄 **Daten-Fetching**: React Query & Axios mit Caching und Re-Validation
 - 🎨 **Styling**: Flexible und responsive UI mit Tailwind CSS
+
+## Screenshots
+
+### Admin: Bilder Hochladen
+![Lipp Tattoo - Admin Bilder Hochladen](https://raw.githubusercontent.com/mariokreitz/blog-with-simple-cms/refs/heads/main/public/Lipp%20Tattoo%20-%20Admin%20Bilder%20Hochladen.png)
+
+### Admin: Einstellungen
+![Lipp Tattoo - Admin Einstellungen](https://raw.githubusercontent.com/mariokreitz/blog-with-simple-cms/refs/heads/main/public/Lipp%20Tattoo%20-%20Admin%20Einstellungen.png)
+
+### Profilseite: Das bin Ich
+![Lipp Tattoo - Das bin Ich](https://raw.githubusercontent.com/mariokreitz/blog-with-simple-cms/refs/heads/main/public/Lipp%20Tattoo%20-%20Das%20bin%20Ich.png)
+
+### Startseite
+![Lipp Tattoo - Startseite](https://raw.githubusercontent.com/mariokreitz/blog-with-simple-cms/refs/heads/main/public/Lipp%20Tattoo%20-%20Startseite.png)
 
 ## Tech Stack
 
@@ -85,122 +100,6 @@ NEXT_PUBLIC_S3_BUCKET="your_s3_bucket"
 AWS_ACCESS_KEY_ID="your_aws_access_key_id"
 AWS_SECRET_ACCESS_KEY="your_aws_secret_access_key"
 ```
-
-## Google OAuth Einrichtung
-
-Folge diesen Schritten, um Google OAuth für das Projekt einzurichten:
-
-1. **Google Cloud Console öffnen**
-   - Melde dich in der Google Cloud Console an: https://console.cloud.google.com/
-2. **Neues Projekt anlegen**
-   - Klicke auf „Projekt erstellen“ und vergebe einen Namen (z. B. `blog-with-simple-cms`).
-3. **OAuth-Zustimmungsbildschirm konfigurieren**
-   - Navigiere zu „APIs & Dienste → OAuth-Zustimmungsbildschirm“.
-   - Wähle „Extern“ aus und fülle alle Pflichtfelder (App-Name, Benutzer-Support-E-Mail) aus.
-   - Speichere die Einstellungen.
-4. **OAuth 2.0-Anmeldedaten erstellen**
-   - Gehe zu „Anmeldedaten → Anmeldedaten erstellen → OAuth-Client-ID“.
-   - Wähle „Webanwendung“.
-   - Trage unter „Autorisierte Weiterleitungs-URIs“ folgenden URI ein:
-     ```
-     https://<deine_webseite>.vercel.app/api/auth/callback/google
-     ```
-   - Erstelle die Anmeldedaten und kopiere die generierte **Client-ID** und **Client-Geheimnis**.
-5. **Umgebungsvariablen befüllen**
-   - Füge `GOOGLE_CLIENT_ID` und `GOOGLE_CLIENT_SECRET` in deine `.env.local` ein.
-
-   ```env
-   GOOGLE_CLIENT_ID="your_google_client_id.apps.googleusercontent.com"
-   GOOGLE_CLIENT_SECRET="your_google_client_secret"
-   ```
-
----
-
-## AWS S3 Bucket Einrichtung
-
-Befolge diese Anleitung, um einen S3 Bucket für Bild-Uploads anzulegen und abzusichern:
-
-1. **AWS Management Console öffnen**
-   - Melde dich bei der AWS-Konsole an: https://console.aws.amazon.com/s3/
-2. **Bucket erstellen**
-   - Klicke auf „Bucket erstellen“.
-   - Vergib einen eindeutigen Namen (z. B. `blog-images`) und wähle deine Region (`NEXT_PUBLIC_AWS_REGION`).
-   - Lasse die Standard-Einstellungen für Versionierung und Verschlüsselung gesetzt.
-   - Erstelle den Bucket.
-3. **CORS-Konfiguration**
-   - Wähle den neuen Bucket aus und navigiere zu **Berechtigungen → CORS-Konfiguration**.
-   - Ersetze die bestehende XML-Konfiguration durch folgende JSON-Konfiguration:
-     ```json
-     [
-       {
-         "AllowedHeaders": ["*"],
-         "AllowedMethods": ["GET", "PUT", "POST", "HEAD"],
-         "AllowedOrigins": [
-           "https://<deine_webseite>.vercel.app",
-           "http://localhost:3000"
-         ],
-         "ExposeHeaders": ["ETag", "x-amz-request-id"],
-         "MaxAgeSeconds": 3000
-       }
-     ]
-     ```
-4. **Öffentlichen Zugriff beschränken**
-   - Unter **Bucket-Einstellungen → Öffentlichen Zugriff beschränken** alle vier Optionen deaktivieren.
-5. **Bucket-Richtlinie**
-   - Lege unter **Berechtigungen → Bucket-Richtlinie** folgende Policy an (ersetze `your_s3_bucket`):
-     ```json
-     {
-       "Version": "2012-10-17",
-       "Statement": [
-         {
-           "Sid": "AllowOnlyFromMySite",
-           "Effect": "Allow",
-           "Principal": "*",
-           "Action": "s3:GetObject",
-           "Resource": "arn:aws:s3:::your_s3_bucket/uploads/*",
-           "Condition": {
-             "StringLike": {
-               "aws:Referer": [
-                 "https://<deine_webseite>.vercel.app/*",
-                 "http://localhost:3000/*"
-               ]
-             }
-           }
-         }
-       ]
-     }
-     ```
-6. **IAM-Benutzer und Berechtigungen**
-   - Erstelle unter **IAM → Benutzer** einen neuen Benutzer mit Programmzugriff (Access Keys).
-   - Weise diesem Benutzer eine Richtlinie zu, die mindestens folgende S3-Rechte enthält:
-     ```json
-     {
-       "Version": "2012-10-17",
-       "Statement": [
-         {
-           "Effect": "Allow",
-           "Action": [
-             "s3:PutObject",
-             "s3:GetObject",
-             "s3:DeleteObject"
-           ],
-           "Resource": [
-             "arn:aws:s3:::your_s3_bucket/*"
-           ]
-         }
-       ]
-     }
-     ```
-7. **Umgebungsvariablen befüllen**
-   - Trage `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `NEXT_PUBLIC_AWS_REGION` und `NEXT_PUBLIC_S3_BUCKET` in deine `.env.local` ein:
-     ```env
-     NEXT_PUBLIC_AWS_REGION="your_aws_region"
-     NEXT_PUBLIC_S3_BUCKET="your_s3_bucket"
-     AWS_ACCESS_KEY_ID="your_aws_access_key_id"
-     AWS_SECRET_ACCESS_KEY="your_aws_secret_access_key"
-     ```
-
----
 
 ## Skripte
 
