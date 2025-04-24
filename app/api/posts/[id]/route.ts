@@ -2,11 +2,9 @@ import dbConnect from "@/lib/mongoose";
 import Post from "@/models/Post";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function DELETE(
-  req: NextRequest,
-  { params }: { params: { id: string } },
-) {
-  const { id } = await params;
+export async function DELETE(req: NextRequest) {
+  const url = new URL(req.nextUrl);
+  const id = url.pathname.split("/").pop();
 
   await dbConnect();
   try {
@@ -21,11 +19,9 @@ export async function DELETE(
   }
 }
 
-export async function PUT(
-  req: NextRequest,
-  { params }: { params: { id: string } },
-) {
-  const { id } = params;
+export async function PUT(req: NextRequest) {
+  const url = new URL(req.nextUrl);
+  const id = url.pathname.split("/").pop();
   const body = await req.json();
 
   await dbConnect();
