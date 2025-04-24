@@ -16,3 +16,18 @@ export async function GET() {
     );
   }
 }
+
+export async function POST(req: Request) {
+  const body = await req.json();
+  await dbConnect();
+  try {
+    const newPost = await Post.create(body);
+    return NextResponse.json({ success: true, newPost }, { status: 200 });
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json(
+      { success: false, error: "Failed to create post" },
+      { status: 500 },
+    );
+  }
+}
