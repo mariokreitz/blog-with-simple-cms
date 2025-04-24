@@ -6,13 +6,17 @@ const override: CSSProperties = {
   margin: "0 auto",
 };
 
-const HashloaderWrapper = () => {
+interface HashloaderWrapperProps {
+  size?: number;
+}
+
+const HashloaderWrapper = ({ size = 100 }: HashloaderWrapperProps) => {
   return (
     <HashLoader
       color="gray"
       loading={true}
       cssOverride={override}
-      size={100}
+      size={size}
       aria-label="Loading Spinner"
     />
   );
