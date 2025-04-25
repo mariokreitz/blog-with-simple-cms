@@ -12,19 +12,19 @@ export default function NewsManager() {
   const {
     data: posts,
     error: postError,
-    isLoading: pl,
+    isLoading: postLoading,
     refetch: refetchPosts,
   } = useQuery<BlogPost[]>({ queryKey: ["posts", "admin"], queryFn: getPosts });
   const {
     data: images,
     error: imgError,
-    isLoading: il,
+    isLoading: imgLoading,
   } = useQuery<ImageData[]>({
     queryKey: ["images", "admin"],
     queryFn: getImages,
   });
 
-  if (pl || il) {
+  if (postLoading || imgLoading) {
     return (
       <div className="my-14 flex flex-col items-center justify-center">
         <p className="my-12 text-3xl font-bold text-gray-200 md:text-5xl">
