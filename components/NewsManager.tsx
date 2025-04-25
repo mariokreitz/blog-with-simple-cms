@@ -43,7 +43,7 @@ export default function NewsManager() {
   }
 
   return (
-    <div className="container mx-auto rounded-lg bg-neutral-800 p-4 shadow-lg">
+    <div className="container mx-auto rounded-lg p-4">
       <h2 className="mb-6 text-2xl font-semibold text-gray-100">
         News Manager
       </h2>
