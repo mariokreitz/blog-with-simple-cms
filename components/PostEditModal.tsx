@@ -58,11 +58,11 @@ const PostEditModal: React.FC<PostEditModalProps> = ({
         className="bg-opacity-60 absolute inset-0 bg-black"
         onClick={onClose}
       ></div>
-      <div className="relative z-10 w-full max-w-2xl rounded-2xl bg-neutral-900 p-6 shadow-2xl">
-        <h3 className="mb-4 text-2xl font-semibold text-gray-100">
+      <div className="relative z-10 w-full max-w-2xl overflow-hidden rounded-2xl bg-neutral-900 shadow-2xl">
+        <h1 className="mb-6 bg-neutral-950/80 p-4 text-2xl font-semibold text-gray-100">
           Beitrag bearbeiten
-        </h3>
-        <div className="space-y-4">
+        </h1>
+        <div className="space-y-4 p-6">
           <input
             value={edited.title}
             onChange={(e) => change("title", e.target.value)}
@@ -126,7 +126,7 @@ const PostEditModal: React.FC<PostEditModalProps> = ({
             </button>
           </div>
         </div>
-        <div className="mt-6 flex justify-end gap-4">
+        <div className="flex justify-end gap-4 bg-neutral-800 p-4">
           <button
             onClick={onClose}
             className="rounded-lg bg-gray-700 px-5 py-2 hover:bg-gray-600"
@@ -138,7 +138,7 @@ const PostEditModal: React.FC<PostEditModalProps> = ({
             disabled={loading.del}
             className="rounded-lg bg-red-600 px-5 py-2 hover:bg-red-500 disabled:opacity-50"
           >
-            {loading.del ? "Löschen..." : "Löschen"}
+            {loading.del ? "Lösche..." : "Löschen"}
           </button>
           <button
             onClick={save}
