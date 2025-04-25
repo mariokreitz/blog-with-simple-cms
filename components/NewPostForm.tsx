@@ -4,21 +4,12 @@ import HashloaderWrapper from "./ui/hash-loader";
 import { useCreatePost } from "@/hooks/useCreatePost";
 import { ImageData } from "@/types/ImageData";
 
-export interface NewPostFormData {
-  title: string;
-  image: string;
-  description: string;
-  content: string;
-  author: string;
-  tags: string[];
-}
-
 interface NewPostFormProps {
   images: ImageData[];
   onSuccess: () => void;
 }
 
-const NewPostForm = ({ images, onSuccess }: NewPostFormProps) => {
+const NewPostForm: React.FC<NewPostFormProps> = ({ images, onSuccess }) => {
   const [selectedUrl, setSelectedUrl] = useState<string>("");
   const {
     mutate: createPost,
@@ -38,6 +29,7 @@ const NewPostForm = ({ images, onSuccess }: NewPostFormProps) => {
       .split(",")
       .map((t) => t.trim())
       .filter(Boolean);
+
     createPost(
       { title, image, description, content, author, tags },
       { onSuccess: () => onSuccess() },
@@ -47,17 +39,14 @@ const NewPostForm = ({ images, onSuccess }: NewPostFormProps) => {
   };
 
   return (
-    <div className="mb-8">
+    <div className="mb-8 rounded-lg bg-neutral-800 p-6 shadow-lg">
       {isCreating && (
         <div className="mb-4 flex items-center text-gray-200">
           <HashloaderWrapper size={24} />
           <span className="ml-2">Beitrag wird erstellt...</span>
         </div>
       )}
-      <form
-        onSubmit={handleSubmit}
-        className={`space-y-4 rounded-lg bg-neutral-800 p-6 shadow-md ${isCreating ? "pointer-events-none opacity-50" : ""}`}
-      >
+      <form onSubmit={handleSubmit} className="space-y-4">
         <input
           name="title"
           placeholder="Titel"
@@ -108,7 +97,7 @@ const NewPostForm = ({ images, onSuccess }: NewPostFormProps) => {
         <button
           type="submit"
           disabled={isCreating}
-          className="w-full rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 disabled:opacity-50"
+          className="w-full rounded-lg bg-blue-600 px-4 py-2 font-medium text-white hover:bg-blue-700 disabled:opacity-50"
         >
           {isCreating ? "Erstelle..." : "Erstellen"}
         </button>
