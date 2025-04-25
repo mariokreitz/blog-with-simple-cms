@@ -80,7 +80,7 @@ const PostEditModal = ({
       <div className="relative z-10 max-h-full w-full max-w-2xl overflow-y-auto bg-neutral-900 p-6 shadow-2xl sm:rounded-2xl">
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-gray-400 hover:text-white"
+          className="absolute top-4 right-4 cursor-pointer text-gray-400 hover:text-white"
           aria-label="Close"
         >
           <IconX size={24} />
@@ -154,7 +154,7 @@ const PostEditModal = ({
                   />
                   <button
                     onClick={() => handleRemoveTag(i)}
-                    className="w-full rounded bg-red-600 px-3 py-2 text-white hover:bg-red-700 sm:w-auto"
+                    className="w-full cursor-pointer rounded bg-red-600 px-3 py-2 text-white hover:bg-red-700 sm:w-auto"
                   >
                     Entfernen
                   </button>
@@ -162,7 +162,7 @@ const PostEditModal = ({
               ))}
               <button
                 onClick={handleAddTag}
-                className="mt-2 rounded bg-blue-600 px-3 py-2 text-white hover:bg-blue-700"
+                className="mt-2 cursor-pointer rounded bg-blue-600 px-3 py-2 text-white hover:bg-blue-700"
               >
                 Tag hinzufügen
               </button>
@@ -173,7 +173,7 @@ const PostEditModal = ({
         <div className="mt-6 flex flex-col gap-2 sm:flex-row sm:justify-between">
           <button
             onClick={onClose}
-            className="w-full rounded-lg bg-gray-600 px-5 py-2 text-white hover:bg-gray-700 sm:w-auto"
+            className="w-full cursor-pointer rounded-lg bg-gray-600 px-5 py-2 text-white hover:bg-gray-700 sm:w-auto"
           >
             Abbrechen
           </button>
@@ -181,14 +181,14 @@ const PostEditModal = ({
           <div className="flex flex-col gap-2 sm:flex-row">
             <button
               onClick={handleDelete}
-              className={`w-full rounded-lg px-5 py-2 text-white sm:w-auto ${confirmDelete ? "bg-red-900 hover:bg-red-950" : "bg-red-700 hover:bg-red-800"}`}
+              className={`w-full cursor-pointer rounded-lg px-5 py-2 text-white sm:w-auto ${confirmDelete ? "bg-red-900 hover:bg-red-950" : "bg-red-700 hover:bg-red-800"}`}
             >
               {confirmDelete ? "Wirklich löschen?" : "Löschen"}
             </button>
 
             <button
               onClick={() => onSave(editedPost)}
-              className="w-full rounded-lg bg-green-600 px-5 py-2 text-white hover:bg-green-700 sm:w-auto"
+              className="w-full cursor-pointer rounded-lg bg-green-600 px-5 py-2 text-white hover:bg-green-700 sm:w-auto"
             >
               Speichern
             </button>
