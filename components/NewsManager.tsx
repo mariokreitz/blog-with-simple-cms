@@ -5,30 +5,26 @@ import { getPosts, getImages } from "@/lib/dataFetching";
 import { BlogPost } from "@/types/BlogPost";
 import { ImageData } from "@/types/ImageData";
 import HashloaderWrapper from "./ui/hash-loader";
-import PostsAdmin from "./PostsAdmin";
 import NewPostForm from "./NewPostForm";
+import PostsAdmin from "./PostsAdmin";
 
 export default function NewsManager() {
   const {
     data: posts,
     error: postError,
-    isLoading: postsLoading,
+    isLoading: pl,
     refetch: refetchPosts,
-  } = useQuery<BlogPost[]>({
-    queryKey: ["posts", "admin"],
-    queryFn: getPosts,
-  });
-
+  } = useQuery<BlogPost[]>({ queryKey: ["posts", "admin"], queryFn: getPosts });
   const {
     data: images,
-    error: imagesError,
-    isLoading: imagesLoading,
+    error: imgError,
+    isLoading: il,
   } = useQuery<ImageData[]>({
     queryKey: ["images", "admin"],
     queryFn: getImages,
   });
 
-  if (postsLoading || imagesLoading) {
+  if (pl || il) {
     return (
       <div className="my-14 flex flex-col items-center justify-center">
         <p className="my-12 text-3xl font-bold text-gray-200 md:text-5xl">
@@ -38,11 +34,8 @@ export default function NewsManager() {
       </div>
     );
   }
-
-  if ((postError || imagesError) instanceof Error) {
-    return (
-      <p className="text-red-500">{(postError || imagesError)!.message}</p>
-    );
+  if ((postError || imgError) instanceof Error) {
+    return <p className="text-red-500">{(postError || imgError)!.message}</p>;
   }
 
   return (
@@ -50,18 +43,14 @@ export default function NewsManager() {
       <h2 className="mb-6 text-2xl font-semibold text-gray-100">
         News Manager
       </h2>
-
       <NewPostForm images={images!} onSuccess={refetchPosts} />
-
-      {!posts || posts.length === 0 ? (
-        <div className="flex flex-col items-center justify-center py-10">
+      {posts && posts.length > 0 ? (
+        <PostsAdmin posts={posts} images={images!} />
+      ) : (
+        <div className="py-10 text-center">
           <p className="text-3xl font-bold text-gray-200">
             Keine News verfügbar
           </p>
-        </div>
-      ) : (
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          <PostsAdmin posts={posts} />
         </div>
       )}
     </div>
