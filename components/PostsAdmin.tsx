@@ -7,7 +7,7 @@ interface PostsAdminProps {
   posts: BlogPost[];
 }
 
-const PostsAdmin: React.FC<PostsAdminProps> = ({ posts }) => {
+const PostsAdmin = ({ posts }: PostsAdminProps) => {
   const [postList, setPostList] = useState<BlogPost[]>(posts);
 
   useEffect(() => {
@@ -75,7 +75,7 @@ const PostsAdmin: React.FC<PostsAdminProps> = ({ posts }) => {
       {postList.map((post, index) => (
         <div
           key={index}
-          className="overflow-hidden rounded-lg bg-neutral-800 shadow-lg transition hover:scale-[1.02] hover:bg-neutral-700"
+          className="cursor-pointer overflow-hidden rounded-lg bg-neutral-800 shadow-lg transition hover:scale-[1.02] hover:bg-neutral-700"
           onClick={() => handleEditClick(post, index)}
         >
           {editableIndex === index ? (
