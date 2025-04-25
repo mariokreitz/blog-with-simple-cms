@@ -11,7 +11,7 @@ interface PostsAdminProps {
   images: ImageData[];
 }
 
-const PostsAdmin: React.FC<PostsAdminProps> = ({ posts, images }) => {
+const PostsAdmin = ({ posts, images }: PostsAdminProps) => {
   const [editPost, setEditPost] = useState<BlogPost | null>(null);
   const queryClient = useQueryClient();
 
@@ -33,9 +33,9 @@ const PostsAdmin: React.FC<PostsAdminProps> = ({ posts, images }) => {
 
       {/* Mobile Ansicht (Cards) */}
       <div className="space-y-4 md:hidden">
-        {posts.map((p) => (
+        {posts.map((p, index) => (
           <div
-            key={p._id}
+            key={index}
             className="rounded-lg bg-neutral-800 p-4 shadow transition hover:bg-neutral-700"
             onClick={() => setEditPost(p)}
           >
@@ -79,9 +79,9 @@ const PostsAdmin: React.FC<PostsAdminProps> = ({ posts, images }) => {
             </tr>
           </thead>
           <tbody>
-            {posts.map((p) => (
+            {posts.map((p, index) => (
               <tr
-                key={p._id}
+                key={index}
                 className="rounded-lg bg-neutral-800 hover:bg-neutral-700"
               >
                 <td className="p-2">
