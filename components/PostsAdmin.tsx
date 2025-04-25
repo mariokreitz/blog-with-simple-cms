@@ -14,10 +14,12 @@ interface PostsAdminProps {
 const PostsAdmin = ({ posts, images }: PostsAdminProps) => {
   const [editPost, setEditPost] = useState<BlogPost | null>(null);
   const queryClient = useQueryClient();
+
   const save = async (p: BlogPost) => {
     await axios.put(`/api/posts/${p._id}`, p);
     queryClient.invalidateQueries({ queryKey: ["posts", "admin"] });
   };
+
   const del = async (id: string) => {
     await axios.delete(`/api/posts/${id}`);
     queryClient.invalidateQueries({ queryKey: ["posts", "admin"] });
