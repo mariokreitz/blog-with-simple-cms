@@ -12,19 +12,22 @@ export default function NewsManager() {
   const {
     data: posts,
     error: postError,
-    isLoading: postLoading,
+    isLoading: pl,
     refetch: refetchPosts,
-  } = useQuery<BlogPost[]>({ queryKey: ["posts", "admin"], queryFn: getPosts });
+  } = useQuery<BlogPost[]>({
+    queryKey: ["posts", "admin"],
+    queryFn: getPosts,
+  });
   const {
     data: images,
     error: imgError,
-    isLoading: imgLoading,
+    isLoading: il,
   } = useQuery<ImageData[]>({
     queryKey: ["images", "admin"],
     queryFn: getImages,
   });
 
-  if (postLoading || imgLoading) {
+  if (pl || il) {
     return (
       <div className="my-14 flex flex-col items-center justify-center">
         <p className="my-12 text-3xl font-bold text-gray-200 md:text-5xl">
@@ -34,12 +37,13 @@ export default function NewsManager() {
       </div>
     );
   }
+
   if ((postError || imgError) instanceof Error) {
     return <p className="text-red-500">{(postError || imgError)!.message}</p>;
   }
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto rounded-lg bg-neutral-800 p-4 shadow-lg">
       <h2 className="mb-6 text-2xl font-semibold text-gray-100">
         News Manager
       </h2>
