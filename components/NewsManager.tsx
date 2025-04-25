@@ -5,8 +5,8 @@ import { getPosts, getImages } from "@/lib/dataFetching";
 import { BlogPost } from "@/types/BlogPost";
 import { ImageData } from "@/types/ImageData";
 import HashloaderWrapper from "./ui/hash-loader";
-import NewPostForm from "./NewPostForm";
 import PostsAdmin from "./PostsAdmin";
+import AccordionNewPost from "./AccordionNewPost";
 
 export default function NewsManager() {
   const {
@@ -47,7 +47,8 @@ export default function NewsManager() {
       <h2 className="mb-6 text-2xl font-semibold text-gray-100">
         News Manager
       </h2>
-      <NewPostForm images={images!} onSuccess={refetchPosts} />
+      <AccordionNewPost images={images!} onSuccess={refetchPosts} />
+
       {posts && posts.length > 0 ? (
         <PostsAdmin posts={posts} images={images!} />
       ) : (
