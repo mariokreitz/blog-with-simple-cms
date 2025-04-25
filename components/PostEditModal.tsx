@@ -30,12 +30,15 @@ const PostEditModal = ({
 
   const change = <K extends keyof BlogPost>(field: K, value: BlogPost[K]) =>
     setEdited({ ...edited, [field]: value });
+
   const addTag = () => setEdited({ ...edited, tags: [...edited.tags, ""] });
+
   const updateTag = (i: number, v: string) => {
     const t = [...edited.tags];
     t[i] = v;
     setEdited({ ...edited, tags: t });
   };
+
   const removeTag = (i: number) =>
     setEdited({ ...edited, tags: edited.tags.filter((_, idx) => idx !== i) });
 
@@ -45,6 +48,7 @@ const PostEditModal = ({
     setLoading((s) => ({ ...s, save: false }));
     onClose();
   };
+
   const del = async () => {
     setLoading((s) => ({ ...s, del: true }));
     await onDelete(edited._id!);
