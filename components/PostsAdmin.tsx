@@ -26,44 +26,80 @@ const PostsAdmin: React.FC<PostsAdminProps> = ({ posts, images }) => {
   };
 
   return (
-    <>
-      <div className="hidden overflow-x-auto rounded-lg bg-neutral-800 shadow-lg md:block">
-        <table className="min-w-full table-auto">
-          <thead className="bg-neutral-700">
-            <tr>
-              <th className="px-4 py-2 text-left text-gray-100">Bild</th>
-              <th className="px-4 py-2 text-left text-gray-100">Titel</th>
-              <th className="px-4 py-2 text-left text-gray-100">Autor</th>
-              <th className="px-4 py-2 text-left text-gray-100">Erstellt</th>
-              <th className="px-4 py-2 text-left text-gray-100">
-                Aktualisiert
+    <div>
+      <h1 className="mb-6 rounded-lg bg-neutral-950/80 p-4 text-2xl font-semibold text-gray-100">
+        Beiträge Übersicht
+      </h1>
+
+      {/* Mobile Ansicht (Cards) */}
+      <div className="space-y-4 md:hidden">
+        {posts.map((p) => (
+          <div
+            key={p._id}
+            className="rounded-lg bg-neutral-800 p-4 shadow transition hover:bg-neutral-700"
+            onClick={() => setEditPost(p)}
+          >
+            <div className="mb-3 flex justify-center">
+              <img
+                src={p.image}
+                alt={p.title}
+                className="h-32 w-auto rounded object-cover"
+              />
+            </div>
+            <div className="space-y-1 text-sm text-gray-200">
+              <p>
+                <strong>Titel:</strong> {p.title}
+              </p>
+              <p>
+                <strong>Autor:</strong> {p.author}
+              </p>
+              <p>
+                <strong>Erstellt:</strong>{" "}
+                {new Date(p.createdAt).toLocaleDateString()}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Desktop Tabelle */}
+      <div className="hidden overflow-x-auto rounded-lg shadow md:block">
+        <table className="min-w-full border-separate border-spacing-y-2 text-left text-sm">
+          <thead>
+            <tr className="bg-neutral-900">
+              <th className="border-b border-neutral-700 p-3">Vorschau</th>
+              <th className="border-b border-neutral-700 p-3">Titel</th>
+              <th className="border-b border-neutral-700 p-3">Autor</th>
+              <th className="border-b border-neutral-700 p-3">Erstellt</th>
+              <th className="border-b border-neutral-700 p-3">Aktualisiert</th>
+              <th className="border-b border-neutral-700 p-3">Tags</th>
+              <th className="border-b border-neutral-700 p-3 text-center">
+                Aktion
               </th>
-              <th className="px-4 py-2 text-left text-gray-100">Tags</th>
-              <th className="px-4 py-2 text-left text-gray-100">Aktion</th>
             </tr>
           </thead>
           <tbody>
             {posts.map((p) => (
               <tr
                 key={p._id}
-                className="border-b border-neutral-700 hover:bg-neutral-700"
+                className="rounded-lg bg-neutral-800 hover:bg-neutral-700"
               >
-                <td className="px-4 py-2">
+                <td className="p-2">
                   <img
                     src={p.image}
                     alt={p.title}
-                    className="h-12 w-12 rounded object-cover"
+                    className="h-16 w-auto rounded object-cover"
                   />
                 </td>
-                <td className="px-4 py-2 text-gray-200">{p.title}</td>
-                <td className="px-4 py-2 text-gray-200">{p.author}</td>
-                <td className="px-4 py-2 text-gray-200">
+                <td className="p-2 text-gray-200">{p.title}</td>
+                <td className="p-2 text-gray-200">{p.author}</td>
+                <td className="p-2 text-gray-200">
                   {new Date(p.createdAt).toLocaleDateString()}
                 </td>
-                <td className="px-4 py-2 text-gray-200">
+                <td className="p-2 text-gray-200">
                   {new Date(p.updatedAt).toLocaleDateString()}
                 </td>
-                <td className="px-4 py-2">
+                <td className="p-2">
                   {p.tags.map((tag) => (
                     <span
                       key={tag}
@@ -73,10 +109,10 @@ const PostsAdmin: React.FC<PostsAdminProps> = ({ posts, images }) => {
                     </span>
                   ))}
                 </td>
-                <td className="px-4 py-2">
+                <td className="p-2 text-center">
                   <button
                     onClick={() => setEditPost(p)}
-                    className="text-sm text-blue-400 hover:underline"
+                    className="cursor-pointer rounded bg-blue-600 px-3 py-1 text-white hover:bg-blue-700"
                   >
                     Bearbeiten
                   </button>
@@ -86,25 +122,7 @@ const PostsAdmin: React.FC<PostsAdminProps> = ({ posts, images }) => {
           </tbody>
         </table>
       </div>
-      <div className="grid grid-cols-1 gap-6 md:hidden">
-        {posts.map((p) => (
-          <div
-            key={p._id}
-            className="cursor-pointer overflow-hidden rounded-lg bg-neutral-800 shadow-lg hover:shadow-xl"
-            onClick={() => setEditPost(p)}
-          >
-            <img
-              src={p.image}
-              alt={p.title}
-              className="h-48 w-full object-cover"
-            />
-            <div className="p-4">
-              <h3 className="text-lg font-semibold text-gray-100">{p.title}</h3>
-              <p className="line-clamp-3 text-gray-300">{p.content}</p>
-            </div>
-          </div>
-        ))}
-      </div>
+
       {editPost && (
         <PostEditModal
           isOpen={!!editPost}
@@ -115,7 +133,7 @@ const PostsAdmin: React.FC<PostsAdminProps> = ({ posts, images }) => {
           onDelete={del}
         />
       )}
-    </>
+    </div>
   );
 };
 
