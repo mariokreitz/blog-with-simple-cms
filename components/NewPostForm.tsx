@@ -18,7 +18,7 @@ interface NewPostFormProps {
   onSuccess: () => void;
 }
 
-const NewPostForm: React.FC<NewPostFormProps> = ({ images, onSuccess }) => {
+const NewPostForm = ({ images, onSuccess }: NewPostFormProps) => {
   const [selectedUrl, setSelectedUrl] = useState<string>("");
   const {
     mutate: createPost,
