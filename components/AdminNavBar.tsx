@@ -16,7 +16,7 @@ const AdminNavBar = () => {
             Bilder
           </Link>
           <Link href="/admin/news" className="text-white hover:text-gray-300">
-            Neue Post
+            Beiträge
           </Link>
           <Link
             href="/admin/settings"
