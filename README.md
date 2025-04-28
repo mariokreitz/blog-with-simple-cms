@@ -42,17 +42,24 @@
 
 ## Screenshots
 
-### Admin: Bilder Hochladen
-![Lipp Tattoo - Admin Bilder Hochladen](https://raw.githubusercontent.com/mariokreitz/blog-with-simple-cms/refs/heads/main/public/Lipp%20Tattoo%20-%20Admin%20Bilder%20Hochladen.png)
-
-### Admin: Einstellungen
-![Lipp Tattoo - Admin Einstellungen](https://raw.githubusercontent.com/mariokreitz/blog-with-simple-cms/refs/heads/main/public/Lipp%20Tattoo%20-%20Admin%20Einstellung.png)
+### Startseite
+![Lipp Tattoo - Startseite](https://raw.githubusercontent.com/mariokreitz/blog-with-simple-cms/refs/heads/main/public/Lipp%20Tattoo%20-%20Startseite.png)
 
 ### Profilseite: Das bin Ich
 ![Lipp Tattoo - Das bin Ich](https://raw.githubusercontent.com/mariokreitz/blog-with-simple-cms/refs/heads/main/public/Lipp%20Tattoo%20-%20Das%20bin%20Ich.png)
 
-### Startseite
-![Lipp Tattoo - Startseite](https://raw.githubusercontent.com/mariokreitz/blog-with-simple-cms/refs/heads/main/public/Lipp%20Tattoo%20-%20Startseite.png)
+### Admin: Bilder Hochladen
+![Lipp Tattoo - Admin Bilder Hochladen](https://raw.githubusercontent.com/mariokreitz/blog-with-simple-cms/refs/heads/main/public/Lipp%20Tattoo%20-%20Admin%20Bilder%20Hochladen.png)
+
+### Admin: Beiträge
+![Lipp Tattoo - Admin Bilder Hochladen](https://raw.githubusercontent.com/mariokreitz/blog-with-simple-cms/refs/heads/main/public/lipp_admin_beitr%C3%A4ge.png)
+
+### Admin: Einstellungen
+![Lipp Tattoo - Admin Einstellungen](https://raw.githubusercontent.com/mariokreitz/blog-with-simple-cms/refs/heads/main/public/Lipp%20Tattoo%20-%20Admin%20Einstellung.png)
+
+
+
+
 
 ## Tech Stack
 
